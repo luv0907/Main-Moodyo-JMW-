@@ -1,0 +1,12 @@
+from safety import allow_action
+
+def execute(self, step, mode="SAFE"):
+    action = step["action"]
+
+    if not allow_action(action, mode):
+        return {
+            "status": "blocked",
+            "reason": "Action blocked in SAFE mode"
+        }
+
+    # execute normally

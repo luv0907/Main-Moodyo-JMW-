@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JARVIS — Autonomous Assistant</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <canvas id="canvas-3d"></canvas>
+    <main class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo" id="logo-trigger">
+                <span>J</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <button class="nav-item active" data-tab="chat" title="Neural Interface">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                </button>
+                <button class="nav-item" data-tab="modules" title="Core Systems">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                </button>
+                <button class="nav-item" data-tab="memory" title="Semantic Memory">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button class="settings-btn" title="System Settings">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <section class="main-content">
+            <header class="header">
+                <div class="header-info">
+                    <h1 class="header-title">JARVIS Neural Interface</h1>
+                    <p class="header-subtitle">Protocol v3.2 Active</p>
+                </div>
+                <div class="header-actions">
+                    <div class="status-badge" id="status-badge">
+                        <span class="status-dot"></span>
+                        <span id="status-text">SYSTEM ONLINE</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-area">
+                <!-- Chat Tab -->
+                <div class="tab-content active" id="chat-tab">
+                    <div class="chat-container">
+                        <div class="messages-area" id="messages-area">
+                            <div class="message system">
+                                Neural link established. Welcome back, Boss.
+                            </div>
+                        </div>
+                        
+                        <div class="input-area">
+                            <div class="input-wrapper">
+                                <input type="text" id="command-input" class="command-input" placeholder="Enter command or speak..." autocomplete="off">
+                                <div class="input-actions">
+                                    <button class="icon-btn" id="voice-btn" title="Voice Input">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                                    </button>
+                                    <button class="icon-btn primary" id="send-btn">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modules Tab -->
+                <div class="tab-content" id="modules-tab">
+                    <div class="modules-grid" id="modules-grid">
+                        <div class="module-card">
+                            <div class="module-icon-box">🧠</div>
+                            <h3 class="module-name">Neural Core</h3>
+                            <p class="module-desc">OpenRouter Multi-Model Fallback Chain</p>
+                            <div class="module-status-line">
+                                <span class="online-tag"><span class="status-dot"></span> ACTIVE</span>
+                                <span>LFM-2.5 / LLAMA-3.3</span>
+                            </div>
+                        </div>
+                        <div class="module-card">
+                            <div class="module-icon-box">👁️</div>
+                            <h3 class="module-name">Visual Cortex</h3>
+                            <p class="module-desc">Real-time screen analysis & verification</p>
+                            <div class="module-status-line">
+                                <span class="online-tag"><span class="status-dot"></span> ACTIVE</span>
+                                <span>NVIDIA NEMOTRON</span>
+                            </div>
+                        </div>
+                        <div class="module-card">
+                            <div class="module-icon-box">🎤</div>
+                            <h3 class="module-name">Acoustic Input</h3>
+                            <p class="module-desc">High-precision Whisper STT engine</p>
+                            <div class="module-status-line">
+                                <span class="online-tag"><span class="status-dot"></span> ACTIVE</span>
+                                <span>WHISPER-MEDIUM</span>
+                            </div>
+                        </div>
+                        <div class="module-card">
+                            <div class="module-icon-box">💾</div>
+                            <h3 class="module-name">Synaptic Memory</h3>
+                            <p class="module-desc">JSON-based semantic vector storage</p>
+                            <div class="module-status-line">
+                                <span class="online-tag"><span class="status-dot"></span> ACTIVE</span>
+                                <span>PERSISTENT</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stats-row">
+                        <div class="stat-item">
+                            <div class="stat-val" id="actions-count">0</div>
+                            <div class="stat-lab">Action Cycles</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-val" id="memory-count">0</div>
+                            <div class="stat-lab">Memory Nodes</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-val" id="uptime-count">0m</div>
+                            <div class="stat-lab">Neural Uptime</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Memory Tab -->
+                <div class="tab-content" id="memory-tab">
+                    <div class="memory-list" id="memory-list">
+                        <div class="memory-row">
+                            <div class="mem-dot"></div>
+                            <div class="mem-time">System</div>
+                            <div class="mem-text">Initializing neural pathways...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+venv311/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Mac
+.DS_Store
+
+# JARVIS specific
+jarvis.log
+jarvis_memory.json
+temp.wav
+screen.png
+
+# Environment variables
+.env

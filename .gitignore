@@ -43,3 +43,28 @@ next-env.d.ts
 # firebase
 firebase-debug.log
 firestore-debug.log
+
+# Recursive ignores
+**/node_modules/
+**/.next/
+**/venv/
+**/.venv/
+**/__pycache__/
+*.pyc
+*.db
+*.log
+.wwebjs_auth/
+.wwebjs_cache/
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+**/jarvis_memory.json
+**/temp.wav
+**/screen.png
+**/venv311/node_modules/
+Moodyo/.next/
+whats-app-chat-bot/whatsapp-client/node_modules/
+scratch/
+**/serviceAccountKey.json

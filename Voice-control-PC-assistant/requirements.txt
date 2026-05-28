@@ -1,0 +1,16 @@
+requests
+pyautogui
+pyttsx3
+openai-whisper
+sounddevice
+numpy
+scipy
+pillow
+opencv-python
+psutil
+chromadb
+fastapi
+uvicorn[standard]
+aiofiles
+loguru
+pynput

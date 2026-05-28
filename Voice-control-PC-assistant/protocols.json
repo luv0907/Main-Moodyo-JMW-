@@ -1,0 +1,44 @@
+{
+    "coding mode": [
+        {
+            "action": "open_app",
+            "params": {
+                "app_name": "Visual Studio Code"
+            }
+        },
+        {
+            "action": "open_app",
+            "params": {
+                "app_name": "Terminal"
+            }
+        },
+        {
+            "action": "speak",
+            "params": {
+                "text": "Environment prepared. Good luck with the build, Sir."
+            }
+        }
+    ],
+    "i'm leaving": [
+        {
+            "action": "speak",
+            "params": {
+                "text": "Powering down systems. Have a safe trip, Sir."
+            }
+        },
+        {
+            "action": "execute_shell",
+            "params": {
+                "command": "osascript -e 'tell application \"System Events\" to sleep'"
+            }
+        }
+    ],
+    "goodbye": [
+        {
+            "action": "speak",
+            "params": {
+                "text": "Goodbye, Sir. All systems standing down."
+            }
+        }
+    ]
+}
