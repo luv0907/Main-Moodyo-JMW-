@@ -33,9 +33,16 @@ def run_async(coro):
 
 class BrowserController:
     def __init__(self):
+        user_data_path = os.path.abspath(
+            os.path.join(
+                os.path.dirname(os.path.abspath(__file__)),
+                "..", "..", ".playwright-mcp", "user-data"
+            )
+        )
+        os.makedirs(user_data_path, exist_ok=True)
         self.server_params = StdioServerParameters(
             command="npx",
-            args=["-y", "@playwright/mcp@latest"],
+            args=["-y", "@playwright/mcp@latest", "--user-data-dir", user_data_path],
             env=None
         )
         self.session = None
@@ -194,6 +201,10 @@ class BrowserController:
             
         return {"status": "failed", "error": f"Timeout waiting for selector: {selector}"}
 
+    async def press_key_async(self, key: str) -> dict:
+        res = await self._call_tool("browser_press_key", {"key": key})
+        return {"status": "success", "detail": f"Pressed key '{key}'", "result": str(res)}
+
     async def find_and_click_async(self, description: str, timeout: int = 8000) -> dict:
         """Uses LLM Vision to locate element matching description, and click it with a timeout fallback."""
         # Check known selectors first — instant, no vision needed
@@ -292,4 +303,7 @@ class BrowserController:
 
     def find_and_click(self, description: str, timeout: int = 8000) -> dict:
         return run_async(self.find_and_click_async(description, timeout))
+
+    def press_key(self, key: str) -> dict:
+        return run_async(self.press_key_async(key))
 

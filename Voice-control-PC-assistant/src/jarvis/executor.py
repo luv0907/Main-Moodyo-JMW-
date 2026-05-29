@@ -427,6 +427,10 @@ end tell
                 description = params.get("description", "")
                 return self.browser.find_and_click(description)
 
+            elif action == "browser_press_key":
+                key = params.get("key", "")
+                return self.browser.press_key(key)
+
             # ─── Flow Control ──────────────────────────────────────────────
             elif action == "wait":
                 secs = float(params.get("seconds", 1))
@@ -436,9 +440,8 @@ end tell
                 return {"status": "speak", "text": params.get("text", "")}
 
             elif action == "goal_complete":
-                if self._browser is not None:
-                    from jarvis.browser_control import run_async
-                    run_async(self._browser.stop())
+                # Keep the browser session persistent across goals; do not stop it here.
+                # It will be cleanly shut down when the JARVIS engine exits.
                 return {"status": "completed"}
 
             else:

@@ -136,10 +136,20 @@ class JarvisEngine:
         except Exception:
             pass
 
-        if settings.WAKE_WORD_ENABLED:
-            self._wake_word_loop()
-        else:
-            self._push_to_talk_loop()
+        try:
+            if settings.WAKE_WORD_ENABLED:
+                self._wake_word_loop()
+            else:
+                self._push_to_talk_loop()
+        finally:
+            logger.info("Cleaning up engine and browser resources...")
+            if hasattr(self, "executor") and self.executor._browser is not None:
+                logger.info("Stopping persistent browser session...")
+                from jarvis.browser_control import run_async
+                try:
+                    run_async(self.executor._browser.stop())
+                except Exception as e:
+                    logger.error(f"Error stopping browser during shutdown: {e}")
 
     def _wake_word_loop(self):
         """Hands-free loop: listen for wake word, then process command."""
@@ -464,7 +474,17 @@ class JarvisEngine:
                 return
 
             # ── Deduplication guard ──────────────────────────────────────────
-            if executed and executed[-1]["action"] == action and executed[-1]["params_key"] == params_key:
+            repeat_count = 0
+            for hist in reversed(executed):
+                if hist.get("action") == action and hist.get("params_key") == params_key:
+                    repeat_count += 1
+                else:
+                    break
+            
+            # For browser actions, we allow up to 2 consecutive executions of the same action/params 
+            # (e.g. key clicks that might need retry) but stop if it repeats 3 or more times.
+            max_repeats = 2 if action.startswith("browser_") else 1
+            if repeat_count >= max_repeats:
                 dup_msg = "All done! Let me know if you need anything else."
                 self._emit("jarvis_message", text=dup_msg)
                 self._emit("status", state="online", label="READY")
@@ -702,6 +722,7 @@ AVAILABLE BROWSER ACTIONS:
 - {{"action": "browser_screenshot", "params": {{}}}} [Capture viewport screenshot of the current page]
 - {{"action": "browser_wait", "params": {{"selector": "div#content", "timeout": 5000}}}} [Wait for CSS selector to appear in DOM]
 - {{"action": "browser_find_and_click", "params": {{"description": "The search button next to input field"}}}} [Use vision to find element by description and click it]
+- {{"action": "browser_press_key", "params": {{"key": "Enter"}}}} [Press a keyboard key on the active element, e.g., 'Enter', 'ArrowDown', 'ArrowUp', 'Tab']
 - {{"action": "answer", "params": {{"text": "final explanation"}}}} [Provide final answer when goal is achieved]
 - {{"action": "goal_complete", "params": {{}}}} [Use when the browser task is successfully finished]
 

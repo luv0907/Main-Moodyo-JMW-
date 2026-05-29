@@ -17,9 +17,9 @@ OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 # Confirmed working model first, then fallbacks
 FREE_MODELS = [
+    'meta-llama/llama-3.3-70b-instruct:free',   # Best for Logic
     'liquid/lfm-2.5-1.2b-instruct:free',       # General purpose (fastest)
     'nvidia/nemotron-nano-12b-v2-vl:free',       # Best for Vision/VL
-    'meta-llama/llama-3.3-70b-instruct:free',   # Best for Logic
     'liquid/lfm-2.5-1.2b-thinking:free',       # Fast thinking
     'mistralai/mistral-7b-instruct:free'       # Reliable fallback
 ]
@@ -36,7 +36,7 @@ class OpenRouterProvider(BaseLLMProvider):
 
     def initialize(self) -> None:
         logger.info(
-            f"Initializing OpenRouter Provider — primary: liquid/lfm-2.5-1.2b-instruct:free"
+            f"Initializing OpenRouter Provider — primary: {settings.OPENROUTER_MODEL or 'meta-llama/llama-3.3-70b-instruct:free'}"
         )
         if not settings.OPENROUTER_API_KEY:
             logger.error("OPENROUTER_API_KEY is missing in config!")

@@ -9,7 +9,7 @@ class Settings(BaseSettings):
     OLLAMA_MODEL: str = "llama3.2-vision:11b-instruct-q4_K_M"
     OPENROUTER_API_KEY: str = ""
     OPENROUTER_BASE_URL: str = "https://openrouter.ai/api/v1/chat/completions"
-    OPENROUTER_MODEL: str = "mistralai/mistral-7b-instruct:free"
+    OPENROUTER_MODEL: str = "google/gemini-2.5-flash"
 
     # STT Settings
     STT_MODEL: str = "medium"
