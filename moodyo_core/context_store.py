@@ -71,6 +71,28 @@ def init_context_db():
                 value       TEXT NOT NULL,
                 updated_at  TEXT NOT NULL
             );
+
+            -- Time-based and condition-based reminders
+            CREATE TABLE IF NOT EXISTS reminders (
+                id          INTEGER PRIMARY KEY AUTOINCREMENT,
+                created_at  TEXT NOT NULL,
+                remind_at   TEXT,           -- ISO timestamp, NULL = condition-based
+                condition   TEXT,           -- 'on_startup' | 'on_mood:sad' | 'on_surface:jarvis'
+                content     TEXT NOT NULL,  -- what to remind
+                action      TEXT,           -- optional: JARVIS command to auto-execute
+                fired       INTEGER DEFAULT 0,
+                surface     TEXT DEFAULT 'all'
+            );
+
+            -- User-defined cron-scheduled tasks
+            CREATE TABLE IF NOT EXISTS scheduled_tasks (
+                id          INTEGER PRIMARY KEY AUTOINCREMENT,
+                cron        TEXT NOT NULL,  -- '0 8 * * *' = 8am daily
+                command     TEXT NOT NULL,  -- command to send to Core Brain
+                label       TEXT,
+                active      INTEGER DEFAULT 1,
+                last_run    TEXT
+            );
         """)
 
         # Migration: add surface/actor columns to legacy command_history if it still exists
@@ -360,6 +382,117 @@ def get_pattern_insight() -> Optional[str]:
         logger.debug(f"[CONTEXT] Pattern insight error (non-critical): {e}")
 
     return None
+
+
+# ─── Reminder & Scheduled Task CRUD ────────────────────────────────────────────────────────────────────────
+
+def add_reminder(
+    content: str,
+    remind_at: str = None,
+    condition: str = None,
+    action: str = None,
+    surface: str = "all"
+):
+    """
+    Schedule a reminder.
+
+    Args:
+        content:   What to remind the user about (displayed in the banner)
+        remind_at: ISO timestamp for time-based reminder (e.g. "2026-05-30T08:00:00")
+        condition: Trigger condition: 'on_startup' | 'on_mood:sad' | None (time-only)
+        action:    Optional JARVIS command to auto-execute when reminder fires
+        surface:   Which surface to surface it on ('all' = everywhere)
+    """
+    with _write_lock:
+        conn = _get_conn()
+        conn.execute("""
+            INSERT INTO reminders (created_at, remind_at, condition, content, action, surface)
+            VALUES (?, ?, ?, ?, ?, ?)
+        """, (datetime.now().isoformat(), remind_at, condition, content, action, surface))
+        conn.commit()
+        conn.close()
+    logger.info(f"[CONTEXT] Reminder added: '{content}' condition={condition} remind_at={remind_at}")
+
+
+def get_pending_reminders(condition: str = None) -> list:
+    """
+    Returns unfired reminders that are due.
+
+    If condition is given, also matches 'on_startup' reminders (so startup
+    reminders always surface on first check regardless of condition type).
+    """
+    conn = _get_conn()
+    now = datetime.now().isoformat()
+
+    if condition:
+        rows = conn.execute("""
+            SELECT id, content, action FROM reminders
+            WHERE fired=0
+              AND (condition=? OR condition='on_startup')
+              AND (remind_at IS NULL OR remind_at <= ?)
+        """, (condition, now)).fetchall()
+    else:
+        rows = conn.execute("""
+            SELECT id, content, action FROM reminders
+            WHERE fired=0
+              AND (remind_at IS NULL OR remind_at <= ?)
+        """, (now,)).fetchall()
+
+    conn.close()
+    return [{"id": r["id"], "content": r["content"], "action": r["action"]} for r in rows]
+
+
+def mark_reminder_fired(reminder_id: int):
+    """Mark a reminder as fired so it doesn't trigger again."""
+    with _write_lock:
+        conn = _get_conn()
+        conn.execute("UPDATE reminders SET fired=1 WHERE id=?", (reminder_id,))
+        conn.commit()
+        conn.close()
+
+
+def get_all_reminders(include_fired: bool = False) -> list:
+    """Return all reminders — used by the dashboard /reminders endpoint."""
+    conn = _get_conn()
+    query = "SELECT * FROM reminders" if include_fired else "SELECT * FROM reminders WHERE fired=0"
+    rows = conn.execute(query + " ORDER BY id DESC").fetchall()
+    conn.close()
+    return [
+        {
+            "id":         r["id"],
+            "created_at": r["created_at"],
+            "remind_at":  r["remind_at"],
+            "condition":  r["condition"],
+            "content":    r["content"],
+            "action":     r["action"],
+            "fired":      bool(r["fired"]),
+            "surface":    r["surface"],
+        }
+        for r in rows
+    ]
+
+
+def add_scheduled_task(cron: str, command: str, label: str = None):
+    """Register a cron-based recurring task."""
+    with _write_lock:
+        conn = _get_conn()
+        conn.execute("""
+            INSERT INTO scheduled_tasks (cron, command, label)
+            VALUES (?, ?, ?)
+        """, (cron, command, label))
+        conn.commit()
+        conn.close()
+    logger.info(f"[CONTEXT] Scheduled task added: '{label}' @ {cron}")
+
+
+def get_active_scheduled_tasks() -> list:
+    """Returns all active cron tasks — loaded by proactive_engine at startup."""
+    conn = _get_conn()
+    rows = conn.execute(
+        "SELECT id, cron, command, label FROM scheduled_tasks WHERE active=1"
+    ).fetchall()
+    conn.close()
+    return [{"id": r["id"], "cron": r["cron"], "command": r["command"], "label": r["label"]} for r in rows]
 
 
 # ─── Auto-init ───────────────────────────────────────────────────────────────

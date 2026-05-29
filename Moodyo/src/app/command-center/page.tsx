@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Mic, MicOff, Send, Cpu, MessageCircle, Music, Terminal,
-  Wifi, WifiOff, Loader2, ChevronRight, Activity
+  Wifi, WifiOff, Loader2, ChevronRight, Activity, Bell, X
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -49,6 +49,18 @@ interface ContextData {
   history: Array<{ command: string; agent: string; success: boolean; created_at: string }>;
   insight: string | null;
 }
+
+interface Notification {
+  id: string;
+  type: 'reminder' | 'mood' | 'insight';
+  message: string;
+}
+
+const NOTIF_COLORS: Record<string, { bg: string; border: string; text: string; icon: string }> = {
+  reminder: { bg: 'rgba(251,191,36,0.08)', border: 'rgba(251,191,36,0.3)', text: '#fbbf24', icon: '⏰' },
+  mood:     { bg: 'rgba(167,139,250,0.08)', border: 'rgba(167,139,250,0.3)', text: '#a78bfa', icon: '🎭' },
+  insight:  { bg: 'rgba(56,189,248,0.08)', border: 'rgba(56,189,248,0.3)', text: '#38bdf8', icon: '💡' },
+};
 
 const CORE_URL = 'http://localhost:8000';
 const JARVIS_WS_URL = 'ws://localhost:8765/ws';
@@ -180,9 +192,33 @@ export default function CommandCenterPage() {
   const [jarvisLog, setJarvisLog] = useState<JarvisActivity[]>([]);
   const [contextData, setContextData] = useState<ContextData | null>(null);
   const [isListening, setIsListening] = useState(false);
+  const [notifications, setNotifications] = useState<Notification[]>([]);
   const chatEndRef = useRef<HTMLDivElement>(null);
   const wsRef = useRef<WebSocket | null>(null);
   const recognitionRef = useRef<any>(null);
+
+  // ── SSE: subscribe to proactive notification stream ───────────────────────
+  useEffect(() => {
+    const es = new EventSource(`${CORE_URL}/notifications/stream`);
+    es.onmessage = (e) => {
+      try {
+        const data = JSON.parse(e.data) as { type: string; message: string };
+        const notif: Notification = {
+          id: `${Date.now()}-${Math.random()}`,
+          type: (data.type as Notification['type']) || 'reminder',
+          message: data.message,
+        };
+        setNotifications(prev => [notif, ...prev].slice(0, 5));
+        // Auto-dismiss after 8 seconds
+        setTimeout(() => {
+          setNotifications(prev => prev.filter(n => n.id !== notif.id));
+        }, 8000);
+      } catch { /* malformed event — ignore */ }
+    };
+    es.onerror = () => { /* SSE reconnects automatically */ };
+    return () => es.close();
+  }, []);
+  // ─────────────────────────────────────────────────────────────────
 
   // ── Scroll chat to bottom ──────────────────────────────────────────────────
   useEffect(() => {
@@ -448,6 +484,45 @@ export default function CommandCenterPage() {
                 ))}
               </div>
             )}
+
+            {/* ── Proactive Notification Banners ────────────────────────────── */}
+            <AnimatePresence mode="popLayout">
+              {notifications.map((n) => {
+                const style = NOTIF_COLORS[n.type] ?? NOTIF_COLORS.reminder;
+                return (
+                  <motion.div
+                    key={n.id}
+                    initial={{ opacity: 0, y: -8, scale: 0.97 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, x: 20, scale: 0.95 }}
+                    transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                    className="flex items-start gap-3 px-4 py-3 rounded-xl text-sm"
+                    style={{
+                      background: style.bg,
+                      border: `1px solid ${style.border}`,
+                    }}
+                  >
+                    <Bell
+                      className="w-4 h-4 flex-none mt-0.5"
+                      style={{ color: style.text }}
+                    />
+                    <span style={{ color: style.text }} className="flex-1 leading-snug">
+                      {style.icon} {n.message}
+                    </span>
+                    <button
+                      onClick={() =>
+                        setNotifications(prev => prev.filter(x => x.id !== n.id))
+                      }
+                      className="flex-none opacity-50 hover:opacity-100 transition-opacity"
+                      style={{ color: style.text }}
+                    >
+                      <X className="w-3.5 h-3.5" />
+                    </button>
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
+            {/* ──────────────────────────────────────────────────────────── */}
 
             {/* Input bar */}
             <div className="flex items-center gap-3 p-3 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm">
