@@ -42,11 +42,15 @@ class OpenRouterProvider(BaseLLMProvider):
             logger.error("OPENROUTER_API_KEY is missing in config!")
 
     def query(self, prompt: str, image_path: str | None = None) -> dict:
-        models_to_try = (
-            [self._working_model] + [m for m in FREE_MODELS if m != self._working_model]
-            if self._working_model
-            else FREE_MODELS
-        )
+        models_to_try = []
+        configured = settings.OPENROUTER_MODEL
+        if configured:
+            models_to_try.append(configured)
+        if self._working_model and self._working_model not in models_to_try:
+            models_to_try.append(self._working_model)
+        for model in FREE_MODELS:
+            if model not in models_to_try:
+                models_to_try.append(model)
 
         headers = {
             "Authorization": f"Bearer {settings.OPENROUTER_API_KEY}",
