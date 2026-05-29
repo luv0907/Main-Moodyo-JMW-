@@ -26,6 +26,14 @@ def _run_applescript(script: str) -> str:
 class JarvisExecutor:
     def __init__(self):
         self.sandbox = SandboxExecutor()
+        self._browser = None
+
+    @property
+    def browser(self):
+        if self._browser is None:
+            from jarvis.browser_control import BrowserController
+            self._browser = BrowserController()
+        return self._browser
 
     def execute(self, step: dict) -> dict:
         action = step.get("action")
@@ -387,6 +395,38 @@ end tell
                 output = result.stdout + result.stderr
                 return {"status": "success", "result": output.strip()}
 
+            # ─── Playwright Browser Actions ──────────────────────────────────
+            elif action == "browser_navigate":
+                url = params.get("url", "")
+                return self.browser.navigate(url)
+
+            elif action == "browser_click":
+                selector = params.get("selector", params.get("selector_or_text", params.get("target", "")))
+                return self.browser.click(selector)
+
+            elif action == "browser_type":
+                selector = params.get("selector", params.get("target", ""))
+                text = params.get("text", params.get("value", ""))
+                return self.browser.type_text(selector, text)
+
+            elif action == "browser_scrape":
+                content = self.browser.get_page_content()
+                return {"status": "success", "result": content}
+
+            elif action == "browser_screenshot":
+                b64_image = self.browser.screenshot()
+                screenshot_path = os.path.abspath(settings.SCREENSHOT_PATH)
+                return {"status": "success", "result": "Screenshot captured", "image_path": screenshot_path}
+
+            elif action == "browser_wait":
+                selector = params.get("selector", params.get("target", params.get("text", "")))
+                timeout = int(params.get("timeout", params.get("time", 5000)))
+                return self.browser.wait_for(selector, timeout)
+
+            elif action == "browser_find_and_click":
+                description = params.get("description", "")
+                return self.browser.find_and_click(description)
+
             # ─── Flow Control ──────────────────────────────────────────────
             elif action == "wait":
                 secs = float(params.get("seconds", 1))
@@ -396,6 +436,9 @@ end tell
                 return {"status": "speak", "text": params.get("text", "")}
 
             elif action == "goal_complete":
+                if self._browser is not None:
+                    from jarvis.browser_control import run_async
+                    run_async(self._browser.stop())
                 return {"status": "completed"}
 
             else:

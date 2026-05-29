@@ -101,7 +101,8 @@ def _dispatch_single_intent(intent: dict, raw_command: str) -> dict:
 
     else:  # JARVIS (default)
         jarvis_command = intent.get("command", raw_command)
-        result = send_to_jarvis(jarvis_command)
+        is_browser = intent.get("browser", False)
+        result = send_to_jarvis(jarvis_command, browser=is_browser)
 
     result["intent"] = intent
     return result

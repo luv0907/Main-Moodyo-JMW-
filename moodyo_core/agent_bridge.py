@@ -31,16 +31,16 @@ STATUS_TIMEOUT    = 2    # health checks must be fast
 
 # ─── JARVIS Bridge ────────────────────────────────────────────────────────────
 
-def send_to_jarvis(command: str) -> dict:
+def send_to_jarvis(command: str, browser: bool = False) -> dict:
     """
     Sends a text command to the JARVIS engine via its REST API.
     JARVIS will execute it autonomously (open apps, search web, etc.)
     """
-    logger.info(f"[BRIDGE → JARVIS] '{command}'")
+    logger.info(f"[BRIDGE → JARVIS] '{command}' (browser={browser})")
     try:
         resp = requests.post(
             JARVIS_URL,
-            json={"command": command},
+            json={"command": command, "browser": browser},
             timeout=JARVIS_TIMEOUT
         )
         resp.raise_for_status()

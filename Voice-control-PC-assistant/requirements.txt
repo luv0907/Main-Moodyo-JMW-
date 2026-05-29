@@ -14,3 +14,6 @@ uvicorn[standard]
 aiofiles
 loguru
 pynput
+mcp
+playwright
+anthropic

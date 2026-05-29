@@ -98,6 +98,7 @@ async def api_status():
 
 class ExecuteRequest(BaseModel):
     command: str
+    browser: bool = False
 
 
 @app.post("/api/execute")
@@ -109,8 +110,8 @@ async def api_execute(body: ExecuteRequest):
     command = body.command.strip()
     if not command:
         return {"status": "error", "detail": "Empty command"}
-    _inbound_q.put(command)
-    return {"status": "queued", "command": command}
+    _inbound_q.put({"command": command, "browser": body.browser})
+    return {"status": "queued", "command": command, "browser": body.browser}
 
 @app.get("/api/contacts")
 async def api_contacts():
@@ -153,7 +154,7 @@ async def websocket_endpoint(ws: WebSocket):
                 if msg.get("type") == "command":
                     text = msg.get("content", "").strip()
                     if text:
-                        _inbound_q.put(text)
+                        _inbound_q.put({"command": text, "browser": False})
                         # Acknowledge receipt
                         await ws.send_text(json.dumps({
                             "type": "status",
@@ -178,7 +179,7 @@ async def websocket_endpoint(ws: WebSocket):
                 # Raw text command (not JSON)
                 text = raw.strip()
                 if text:
-                    _inbound_q.put(text)
+                    _inbound_q.put({"command": text, "browser": False})
 
     except WebSocketDisconnect:
         manager.disconnect(ws)
@@ -188,9 +189,9 @@ async def websocket_endpoint(ws: WebSocket):
 
 # ── Inbound queue: browser → engine ─────────────────────────────────────────
 # Engine polls this to receive typed commands from the browser.
-_inbound_q: "_queue_stdlib.Queue[str]" = _queue_stdlib.Queue()
+_inbound_q: "_queue_stdlib.Queue[dict]" = _queue_stdlib.Queue()
 
-def get_browser_command(timeout: float = 0.1) -> str | None:
+def get_browser_command(timeout: float = 0.1) -> dict | None:
     """Called by engine to check for typed browser commands."""
     try:
         return _inbound_q.get(timeout=timeout)

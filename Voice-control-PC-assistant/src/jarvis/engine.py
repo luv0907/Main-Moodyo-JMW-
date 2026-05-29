@@ -308,8 +308,13 @@ class JarvisEngine:
 
     # ── Request Processor ─────────────────────────────────────────────────────
 
-    def _process_request(self, user_input: str):
+    def _process_request(self, user_input: str | dict):
         """Route between goal execution and pure conversation."""
+        is_browser = False
+        if isinstance(user_input, dict):
+            is_browser = user_input.get("browser", False)
+            user_input = user_input.get("command", "")
+
         # Emit user message to UI
         self._emit("user_message", text=user_input)
 
@@ -322,7 +327,7 @@ class JarvisEngine:
             return
 
         # Process as a goal
-        self.process_goal(user_input)
+        self.process_goal(user_input, is_browser=is_browser)
 
     def _handle_contact_commands(self, text: str) -> bool:
         """Handle contact book voice commands before sending to LLM."""
@@ -346,11 +351,56 @@ class JarvisEngine:
 
         return False
 
+    def _verify_with_vision(self, screenshot_b64: str, action_taken: str) -> str:
+        """Send screenshot to vision LLM and get observation."""
+        import requests
+        headers = {
+            "Authorization": f"Bearer {settings.OPENROUTER_API_KEY}",
+            "Content-Type": "application/json"
+        }
+        payload = {
+            "model": "google/gemini-flash-1.5",
+            "max_tokens": 200,
+            "messages": [{
+                "role": "user",
+                "content": [
+                    {
+                        "type": "image_url",
+                        "image_url": {
+                            "url": f"data:image/jpeg;base64,{screenshot_b64}"
+                        }
+                    },
+                    {
+                        "type": "text",
+                        "text": f"I just performed: '{action_taken}'. Did it succeed? What do you see on screen? Be brief and specific."
+                    }
+                ]
+            }]
+        }
+        try:
+            response = requests.post(
+                "https://openrouter.ai/api/v1/chat/completions",
+                headers=headers,
+                json=payload,
+                timeout=15
+            )
+            if response.ok:
+                data = response.json()
+                return data["choices"][0]["message"]["content"]
+            else:
+                logger.error(f"Vision verification failed with status {response.status_code}: {response.text}")
+                return "Action performed (could not verify via vision)."
+        except Exception as e:
+            logger.error(f"Error in vision verification: {e}")
+            return "Action performed (vision verification error)."
+
     # ── Goal Execution (ReAct loop) ───────────────────────────────────────────
 
-    def process_goal(self, goal: str):
+    def process_goal(self, goal: str, is_browser: bool = False):
         """ReAct agent with rule-based completion, confirmation, multi-turn, and Q&A."""
-        logger.info(f"New Goal: {goal}")
+        if not is_browser:
+            is_browser = any(w in goal.lower() for w in ("search", "google", "youtube", "amazon", "gmail", "website", "http", "www", "url", "internet", "browser", "chrome"))
+        logger.info(f"New Goal: {goal} (is_browser={is_browser})")
         self.memory.store(f"User Goal: {goal}")
         self._emit("goal_start", goal=goal)
         self._emit("status", state="thinking", label="THINKING")
@@ -364,7 +414,7 @@ class JarvisEngine:
         for step_num in range(MAX_STEPS):
             time.sleep(1.0)  # Rate limit safety
             self._emit("react_step", phase="observe", step=step_num)
-            prompt = self._build_prompt(goal, executed, failed)
+            prompt = self._build_prompt(goal, executed, failed, is_browser=is_browser)
 
             self._emit("react_step", phase="think", step=step_num)
             # If the previous step took a screenshot, pass it to the LLM
@@ -473,10 +523,30 @@ class JarvisEngine:
 
             if result.get("status") in ("success", "completed"):
                 # Store the actual output (e.g., from run_code) in history
+                result_desc = result.get("output", "success")
+                
+                # Check for browser vision feedback
+                if action.startswith("browser_") and action not in ("browser_screenshot", "browser_scrape", "browser_wait"):
+                    logger.info(f"Performing visual check for browser action: {action}")
+                    try:
+                        # Capture screenshot base64 directly
+                        screenshot_b64 = self.executor.browser.screenshot()
+                        if screenshot_b64:
+                            action_desc = f"{action} with params {params}"
+                            verify_text = self._verify_with_vision(screenshot_b64, action_desc)
+                        else:
+                            verify_text = "Action performed (could not capture screenshot)"
+                        logger.info(f"Visual feedback: {verify_text}")
+                        result_desc = f"Success. Visual Observation: {verify_text}"
+                    except Exception as ve:
+                        logger.error(f"Visual verification check failed: {ve}")
+                        result_desc = "Success (visual verification failed)"
+
                 executed.append({
                     "action": action, 
+                    "params": params,
                     "params_key": params_key, 
-                    "result": result.get("output", "success")
+                    "result": result_desc
                 })
                 self._emit("log_entry", action=action, params=params, status="ok")
                 self.memory.store(f"Executed: {action}")
@@ -496,14 +566,24 @@ class JarvisEngine:
                 speak_text = result["text"]
                 self._emit("jarvis_message", text=speak_text)
                 self.tts.speak(speak_text)
-                executed.append({"action": action, "params_key": params_key, "result": "ok"})
+                executed.append({
+                    "action": action, 
+                    "params": params,
+                    "params_key": params_key, 
+                    "result": "ok"
+                })
                 self._emit("log_entry", action=action, params=params, status="ok")
 
             else:
                 err = result.get("error", "unknown error")
                 logger.error(f"Action '{action}' failed: {err}")
                 failed.append(action)
-                executed.append({"action": action, "params_key": params_key, "result": f"FAILED: {err}"})
+                executed.append({
+                    "action": action, 
+                    "params": params,
+                    "params_key": params_key, 
+                    "result": f"FAILED: {err}"
+                })
                 self._emit("log_entry", action=action, params=params, status="err", error=err)
                 retry_msg = "That didn't quite work. Let me try a different way."
                 self._emit("jarvis_message", text=retry_msg)
@@ -600,12 +680,43 @@ class JarvisEngine:
         return params
 
     # ── LLM Prompt ────────────────────────────────────────────────────────
-    def _build_prompt(self, goal: str, executed: list, failed: list) -> str:
-        """Construct the ReAct system prompt with Vision capabilities."""
-        return f"""You are JARVIS, an autonomous PC assistant.
+    def _build_prompt(self, goal: str, executed: list, failed: list, is_browser: bool = False) -> str:
+        """Construct the ReAct system prompt with Vision capabilities and Browser MCP actions."""
+        history_str = ""
+        if executed:
+            history_str += "\nHISTORY OF ACTIONS COMPLETED IN THIS GOAL:\n"
+            for idx, step_info in enumerate(executed):
+                history_str += f"- Step {idx + 1}: Executed action `{step_info.get('action')}` with params {step_info.get('params')} -> Observation/Result: {step_info.get('result')}\n"
+
+        if is_browser:
+            return f"""You are JARVIS, an autonomous PC assistant running in BROWSER CONTROL MODE.
+Your task is to control the web browser using Playwright to achieve the user's goal.
 
 GOAL: {goal}
+{history_str}
+AVAILABLE BROWSER ACTIONS:
+- {{"action": "browser_navigate", "params": {{"url": "https://youtube.com"}}}} [Navigate browser to a URL]
+- {{"action": "browser_click", "params": {{"selector": "button#search-icon-legacy"}}}} [Click on an element. Can be a CSS selector or text selector like 'text=Sign In']
+- {{"action": "browser_type", "params": {{"selector": "input[name='search_query']", "text": "lofi music"}}}} [Type text into input field specified by selector]
+- {{"action": "browser_scrape", "params": {{}}}} [Retrieve the visible text content of the current webpage]
+- {{"action": "browser_screenshot", "params": {{}}}} [Capture viewport screenshot of the current page]
+- {{"action": "browser_wait", "params": {{"selector": "div#content", "timeout": 5000}}}} [Wait for CSS selector to appear in DOM]
+- {{"action": "browser_find_and_click", "params": {{"description": "The search button next to input field"}}}} [Use vision to find element by description and click it]
+- {{"action": "answer", "params": {{"text": "final explanation"}}}} [Provide final answer when goal is achieved]
+- {{"action": "goal_complete", "params": {{}}}} [Use when the browser task is successfully finished]
 
+RULES:
+1. Chain your browser actions logically: navigate -> wait for selector -> type/click -> check page content/screenshot -> repeat.
+2. After every action, the system will automatically perform a vision feedback check (screenshot + LLM description) and feed it as the next step's Observation/Result. Use this feedback to verify if the action worked or if you need to retry or choose another selector.
+3. If an action fails or does not do what you expected, try a different selector or use 'browser_find_and_click' with a clear description of the element.
+4. Output ONLY the JSON action, nothing else.
+
+Next action JSON:"""
+        else:
+            return f"""You are JARVIS, an autonomous PC assistant.
+
+GOAL: {goal}
+{history_str}
 AVAILABLE ACTIONS:
 - {{"action": "open_app", "params": {{"app_name": "Google Chrome"}}}}
 - {{"action": "navigate_to_url", "params": {{"url": "youtube.com"}}}} [Open a URL in the default browser]
@@ -615,6 +726,7 @@ AVAILABLE ACTIONS:
 - {{"action": "run_code", "params": {{"code": "print(50*12)"}}}}
 - {{"action": "screen_query", "params": {{"question": "Is the browser open?"}}}} [Capture and analyze screen]
 - {{"action": "answer", "params": {{"text": "final result"}}}} [Use only when goal is finished]
+- {{"action": "goal_complete", "params": {{}}}} [Use when the task is successfully finished]
 
 VISION RULES:
 1. Use "screen_query" if you need to VERIFY if an action worked (e.g., did the app actually open?).

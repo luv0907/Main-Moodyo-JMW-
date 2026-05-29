@@ -33,7 +33,9 @@ You are an intent classifier for a personal AI assistant with 3 capabilities:
 
 1. MUSIC  — Play/find music by mood. Valid moods: happy, sad, joyfull, depressed
    Note: If the user requests a style, genre, or mood that is not directly one of the 4 valid moods, you MUST map it to the closest valid mood. For example, "focused", "lofi", "study", "chill", or "ambient" should map to "joyfull". "upbeat" or "energetic" should map to "happy".
-2. JARVIS — Control the PC: open apps, search web, take screenshot, type, click
+2. JARVIS — Control the PC (open apps, type, click) OR browse the web / perform browser tasks.
+   - If the task is a browser task (e.g., navigating websites, searching Google/Amazon/YouTube, checking email in a webmail client, filling out forms, scraping web page content, or multi-step web workflows), you MUST set "browser": true in the JARVIS intent.
+   - For standard desktop PC control tasks (like opening native apps, local code execution, system volume), set "browser": false.
 3. WHATSAPP — Send a WhatsApp message to a contact
 
 IMPORTANT: A command can have MULTIPLE intents (e.g. "play lofi and open notion").
@@ -42,7 +44,7 @@ Always respond with a JSON ARRAY, even if there is only one intent.
 Format:
 [
   {"intent": "MUSIC", "mood": "happy|sad|joyfull|depressed"},
-  {"intent": "JARVIS", "command": "<exact command>"},
+  {"intent": "JARVIS", "command": "<exact command>", "browser": true|false},
   {"intent": "WHATSAPP", "contact": "<name>", "message": "<text>"}
 ]
 
@@ -106,9 +108,10 @@ def _keyword_fallback(command: str) -> list[dict]:
                     break
             part_intent = {"intent": "MUSIC", "mood": detected_mood, "_fallback": True}
             
-        # 3. JARVIS fallback for this part (retains full command to avoid truncation)
+        # 3. JARVIS fallback for this part
         else:
-            part_intent = {"intent": "JARVIS", "command": command, "_fallback": True}
+            is_browser_cmd = any(w in part.lower() for w in ("search", "google", "youtube", "amazon", "gmail", "website", "http", "www", "url", "internet", "browser", "chrome"))
+            part_intent = {"intent": "JARVIS", "command": command, "browser": is_browser_cmd, "_fallback": True}
             
         if part_intent and part_intent["intent"] not in seen_intents:
             intents.append(part_intent)
@@ -116,7 +119,8 @@ def _keyword_fallback(command: str) -> list[dict]:
 
     # If the only intent type detected is JARVIS, or if no intents detected, return single JARVIS with full command
     if not intents or (len(intents) == 1 and intents[0]["intent"] == "JARVIS"):
-        return [{"intent": "JARVIS", "command": command, "_fallback": True}]
+        is_browser_cmd = any(w in command.lower() for w in ("search", "google", "youtube", "amazon", "gmail", "website", "http", "www", "url", "internet", "browser", "chrome"))
+        return [{"intent": "JARVIS", "command": command, "browser": is_browser_cmd, "_fallback": True}]
         
     return intents
 

@@ -77,7 +77,7 @@ wait_for_port 8000 "MOODYO-CORE"
 # ── 1. JARVIS Voice Assistant (port 8765) ─────────────────────────────────────
 log "$CYAN" "1/6 Starting JARVIS..."
 start_service "JARVIS" "Voice-control-PC-assistant" \
-    "python run_with_ui.py" "$CYAN"
+    "./venv311/bin/python run_with_ui.py" "$CYAN"
 wait_for_port 8765 "JARVIS" 40
 
 # ── 2. WhatsApp AI Brain / Flask (port 5001) ──────────────────────────────────
