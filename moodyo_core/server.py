@@ -31,7 +31,8 @@ from intent_router import classify_intent
 from agent_bridge import send_to_jarvis, send_to_whatsapp, route_to_moodyo, check_agent_status
 from context_store import (
     init_context_db, save_command, get_recent_commands,
-    get_all_context, set_context, build_context_summary, get_pattern_insight
+    get_all_context, set_context, build_context_summary, get_pattern_insight,
+    log_event, get_kv, get_context_summary
 )
 
 logging.basicConfig(
@@ -62,10 +63,22 @@ async def startup():
 # ─── Models ───────────────────────────────────────────────────────────────────
 class CommandRequest(BaseModel):
     command: str
+    surface: str = "command_center"  # which surface sent this command
 
 
 class SetMoodRequest(BaseModel):
     mood: str
+
+
+class LogRequest(BaseModel):
+    """Schema for the /log endpoint — lets any surface write to unified_thread."""
+    surface: str
+    actor: str = "user"
+    content: str
+    agent: str = None
+    success: bool = None
+    mood: str = None
+    metadata: dict = None
 
 
 # ─── Intent dispatcher ────────────────────────────────────────────────────────
@@ -160,18 +173,22 @@ def handle_command(body: CommandRequest):
                         "detail": None
                     })
 
-    # Step 3: Save to context store
+    # Step 3: Save to unified cross-surface thread
     all_success = all(r.get("success", False) for r in results)
     agents_used = ", ".join(set(r.get("agent", "?") for r in results))
     try:
         set_context("last_agent", agents_used)
+        current_mood = get_kv("current_mood")
         for r in results:
-            save_command(
-                command=command,
-                intent=r.get("intent", {}),
+            # Write to unified thread with surface tag from the request
+            log_event(
+                surface=body.surface,
+                actor="user",
+                content=command,
                 agent=r.get("agent", "?"),
                 success=r.get("success", False),
-                error=r.get("error")
+                mood=current_mood,
+                metadata={"intent": r.get("intent", {}), "error": r.get("error")}
             )
     except Exception as e:
         logger.warning(f"[CORE] Context store write failed: {e}")
@@ -197,14 +214,17 @@ def get_status():
 
 @app.get("/context")
 def get_context_endpoint():
-    """Returns the full context store — mood, history, last agent, and proactive insight."""
+    """Returns the full context — mood, unified thread summary, history, and proactive insight."""
     try:
         insight = get_pattern_insight()
+        ctx = get_context_summary()
         return {
-            "context": get_all_context(),
-            "history": get_recent_commands(10),
-            "summary": build_context_summary(),
-            "insight": insight  # proactive nudge for the dashboard
+            "context":               get_all_context(),
+            "history":               get_recent_commands(10),
+            "summary":               ctx["cross_surface_summary"],
+            "cross_surface_summary": ctx["cross_surface_summary"],
+            "recent_thread":         ctx["recent_thread"],
+            "insight":               insight,
         }
     except Exception as e:
         return {"error": str(e), "context": {}, "history": [], "insight": None}
@@ -220,6 +240,39 @@ def set_mood_endpoint(body: SetMoodRequest):
     set_context("current_mood", mood)
     logger.info(f"[CORE] Mood set to: {mood}")
     return {"success": True, "mood": mood}
+
+
+@app.post("/log")
+def log_event_endpoint(body: LogRequest):
+    """
+    Universal write endpoint for the unified cross-surface thread.
+    Any surface (WhatsApp bot, Moodyo Next.js, external tools) can POST here
+    to record an interaction without touching the SQLite DB directly.
+    """
+    try:
+        log_event(
+            surface=body.surface,
+            actor=body.actor,
+            content=body.content,
+            agent=body.agent,
+            success=body.success,
+            mood=body.mood or get_kv("current_mood"),
+            metadata=body.metadata,
+        )
+        return {"ok": True}
+    except Exception as e:
+        logger.error(f"[LOG] Write failed: {e}")
+        return {"ok": False, "error": str(e)}
+
+
+@app.get("/context/thread")
+def get_thread_endpoint(hours: int = 24, limit: int = 30):
+    """Returns the raw unified thread for the last N hours (used by dashboard)."""
+    try:
+        from context_store import get_recent_thread
+        return {"thread": get_recent_thread(hours=hours, limit=limit)}
+    except Exception as e:
+        return {"thread": [], "error": str(e)}
 
 
 @app.get("/whatsapp/chats")

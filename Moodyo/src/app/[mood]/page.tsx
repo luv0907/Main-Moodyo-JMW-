@@ -46,6 +46,38 @@ export default function MoodRoute({ params }: { params: Promise<{ mood: string }
   const { toast } = useToast();
   const [showScanner, setShowScanner] = useState(false);
 
+  // ── Log mood selection to unified cross-surface thread ────────────────
+  useEffect(() => {
+    if (!def || !PRIMARY_MOODS.includes(moodKey)) return;
+    const logMoodToCore = async () => {
+      try {
+        // 1. Write the mood selection into the unified thread
+        await fetch('http://localhost:8000/log', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            surface: 'moodyo',
+            actor: 'user',
+            content: `Selected mood: ${moodKey}`,
+            agent: 'MOODYO',
+            mood: moodKey,
+            success: true,
+          }),
+        });
+        // 2. Also update the Core Brain KV so JARVIS knows current mood
+        await fetch('http://localhost:8000/context/mood', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ mood: moodKey }),
+        });
+      } catch {
+        // Silent — never block music playback on Core Brain availability
+      }
+    };
+    logMoodToCore();
+  }, [moodKey, def]);
+  // ─────────────────────────────────────────────────────────────────
+
   useEffect(() => {
     if (!def || !PRIMARY_MOODS.includes(moodKey)) {
       router.replace('/');

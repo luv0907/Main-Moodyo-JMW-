@@ -23,7 +23,7 @@ import os
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'whats-app-chat-bot'))
 from config import NVIDIA_API_KEY, NVIDIA_BASE_URL, MODEL
-from context_store import build_context_summary
+from context_store import build_context_summary, build_cross_surface_summary
 
 logger = logging.getLogger(__name__)
 
@@ -158,13 +158,19 @@ def classify_intent(command: str) -> list[dict]:
     """
     logger.info(f"[INTENT] Classifying: '{command}'")
 
-    # Build context to inject
+    # Build cross-surface context to inject
     try:
-        context_summary = build_context_summary()
+        context_summary = build_cross_surface_summary()
     except Exception:
-        context_summary = "No prior context."
+        try:
+            context_summary = build_context_summary()
+        except Exception:
+            context_summary = "No prior context."
 
-    context_block = f"\nCURRENT CONTEXT:\n{context_summary}\n" if context_summary else ""
+    context_block = (
+        f"\nCROSS-SURFACE USER CONTEXT (last 24h):\n{context_summary}\n"
+        if context_summary else ""
+    )
 
     try:
         response = requests.post(

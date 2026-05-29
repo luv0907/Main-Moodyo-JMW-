@@ -8,13 +8,36 @@ from database import is_bot_enabled, save_message, upsert_profile_name
 logger = logging.getLogger(__name__)
 whatsapp_bp = Blueprint('whatsapp', __name__)
 
-# The Core Brain endpoint — used for self-message routing
+# The Core Brain endpoint — used for self-message routing and unified thread logging
 CORE_BRAIN_URL = "http://localhost:8000/command"
+CORE_LOG_URL   = "http://localhost:8000/log"
 
 # Your own WhatsApp number (in international format e.g. "919876543210@c.us")
 # When the bot receives a message FROM this number, it forwards to Core Brain
 # Leave empty to disable self-routing
 MY_WHATSAPP_NUMBER = "919876543210@c.us"   # e.g. "919876543210@c.us"
+
+
+def _log_to_core(content: str, actor: str = "user", success: bool = None):
+    """
+    Fire-and-forget: write one interaction to the unified cross-surface thread.
+    Never blocks — 2s timeout, silently swallowed on failure.
+    This is what gives JARVIS and the Command Center visibility into WhatsApp.
+    """
+    try:
+        requests.post(
+            CORE_LOG_URL,
+            json={
+                "surface": "whatsapp",
+                "actor":   actor,
+                "content": content,
+                "agent":   "WHATSAPP",
+                "success": success,
+            },
+            timeout=2
+        )
+    except Exception:
+        pass  # never block WhatsApp on Core Brain availability
 
 
 @whatsapp_bp.route('/whatsapp', methods=['POST'])
@@ -35,11 +58,17 @@ def receive_whatsapp():
     # ── Self-message routing: if the message is from YOU, treat it as a command
     if MY_WHATSAPP_NUMBER and sender == MY_WHATSAPP_NUMBER:
         logger.info(f"[SELF-CMD] Forwarding '{message}' to Core Brain.")
+        # Log your own command to the unified thread
+        _log_to_core(message, actor="user")
         try:
-            resp = requests.post(CORE_BRAIN_URL, json={"command": message}, timeout=20)
+            resp = requests.post(
+                CORE_BRAIN_URL,
+                json={"command": message, "surface": "whatsapp"},
+                timeout=20
+            )
             result = resp.json()
-            # Echo result back to you on WhatsApp
             feedback = f"✅ Core Brain: intent={result.get('intent', {}).get('intent', '?')} | {result.get('detail', result.get('error', 'done'))}"
+            _log_to_core(feedback, actor="agent", success=True)
             send_reply(sender, feedback)
         except Exception as e:
             logger.error(f"[SELF-CMD] Core Brain unreachable: {e}")
@@ -50,6 +79,9 @@ def receive_whatsapp():
     upsert_profile_name(sender, name)
     save_message(sender, "user", message)
 
+    # Log the inbound message to the unified cross-surface thread
+    _log_to_core(f"{name}: {message}", actor="user")
+
     # Check Killswitch
     if not is_bot_enabled():
         logger.info(f"[KILLSWITCH] Bot is OFF. Ignoring message from {name}.")
@@ -57,6 +89,9 @@ def receive_whatsapp():
 
     reply = generate_reply(sender, name, message)
     logger.info(f"[WEBHOOK] Ajju: {reply}")
+
+    # Log the bot's reply to the unified thread
+    _log_to_core(reply, actor="agent", success=True)
 
     send_reply(sender, reply)
     return jsonify({"status": "ok", "reply": reply}), 200

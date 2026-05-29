@@ -14,11 +14,54 @@ import time
 import os
 import json
 import random
+import requests as _http
 import sounddevice as sd
 import numpy as np
 import scipy.io.wavfile as wav
 import tempfile
 import whisper
+
+# ── Cross-Surface Context Helper ─────────────────────────────────────────────
+
+CORE_BRAIN_CONTEXT_URL = "http://localhost:8000/context"
+CORE_BRAIN_LOG_URL     = "http://localhost:8000/log"
+
+def _get_cross_surface_context() -> str:
+    """
+    Fetches the last 24h unified thread summary from Core Brain.
+    Called at the start of every ReAct loop so JARVIS knows what happened
+    on WhatsApp, Moodyo, and the Command Center before it starts planning.
+    Fails silently with a 1s timeout so it never blocks the voice loop.
+    """
+    try:
+        r = _http.get(CORE_BRAIN_CONTEXT_URL, timeout=1)
+        if r.ok:
+            return r.json().get("cross_surface_summary", "")
+    except Exception:
+        pass
+    return ""
+
+
+def _log_goal_to_core(goal: str, success: bool):
+    """
+    After JARVIS completes (or fails) a goal, write it to the unified thread
+    so WhatsApp and Command Center can see what JARVIS did.
+    """
+    try:
+        _http.post(
+            CORE_BRAIN_LOG_URL,
+            json={
+                "surface": "voice",
+                "actor":   "agent",
+                "content": goal,
+                "agent":   "JARVIS",
+                "success": success,
+            },
+            timeout=1
+        )
+    except Exception:
+        pass
+
 
 # ── UI Bridge (optional - only active when run_with_ui.py is used) ───────────
 _ui_emit = None   # set by run_with_ui.py before starting the engine
@@ -415,6 +458,9 @@ class JarvisEngine:
         self._emit("goal_start", goal=goal)
         self._emit("status", state="thinking", label="THINKING")
 
+        # Log the incoming goal to unified thread immediately
+        _log_goal_to_core(f"Goal started: {goal}", success=None)
+
         executed   = []
         failed     = []
         MAX_STEPS  = 12
@@ -471,6 +517,7 @@ class JarvisEngine:
                 self._emit("status", state="online", label="READY")
                 self.tts.speak(done_msg)
                 self.memory.store(f"Goal completed: {goal}")
+                _log_goal_to_core(f"Goal completed: {goal}", success=True)
                 return
 
             # ── Deduplication guard ──────────────────────────────────────────
@@ -701,17 +748,24 @@ class JarvisEngine:
 
     # ── LLM Prompt ────────────────────────────────────────────────────────
     def _build_prompt(self, goal: str, executed: list, failed: list, is_browser: bool = False) -> str:
-        """Construct the ReAct system prompt with Vision capabilities and Browser MCP actions."""
+        """Construct the ReAct system prompt with cross-surface context, Vision, and Browser MCP actions."""
         history_str = ""
         if executed:
             history_str += "\nHISTORY OF ACTIONS COMPLETED IN THIS GOAL:\n"
             for idx, step_info in enumerate(executed):
                 history_str += f"- Step {idx + 1}: Executed action `{step_info.get('action')}` with params {step_info.get('params')} -> Observation/Result: {step_info.get('result')}\n"
 
+        # Fetch unified cross-surface context (1s timeout, fails silently)
+        cross_surface = _get_cross_surface_context()
+        context_block = (
+            f"\nUSER CONTEXT (last 24h across all surfaces):\n{cross_surface}\n"
+            if cross_surface else ""
+        )
+
         if is_browser:
             return f"""You are JARVIS, an autonomous PC assistant running in BROWSER CONTROL MODE.
 Your task is to control the web browser using Playwright to achieve the user's goal.
-
+{context_block}
 GOAL: {goal}
 {history_str}
 AVAILABLE BROWSER ACTIONS:
@@ -735,7 +789,7 @@ RULES:
 Next action JSON:"""
         else:
             return f"""You are JARVIS, an autonomous PC assistant.
-
+{context_block}
 GOAL: {goal}
 {history_str}
 AVAILABLE ACTIONS:
