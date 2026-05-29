@@ -1,0 +1,738 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - link "Skip to main content" [ref=e2] [cursor=pointer]
+      - link "Accessibility help" [ref=e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=en-IN
+  - generic [ref=e8]:
+    - search [ref=e9]:
+      - generic [ref=e11]:
+        - generic:
+          - generic:
+            - generic:
+              - img
+        - link "Men's IPL 2026 Playoffs" [ref=e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=en&ictx=2&sa=X&ved=0ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQPQgK
+          - img "Men's IPL 2026 Playoffs" [ref=e14]
+        - generic [ref=e15]:
+          - generic [ref=e16]:
+            - combobox "Search" [ref=e19]: anurag university hyderabad anurag university hyderabad
+            - generic [ref=e20]:
+              - button "Clear" [ref=e22] [cursor=pointer]:
+                - img [ref=e24]
+              - generic [ref=e27]:
+                - button "Search by voice" [ref=e28] [cursor=pointer]:
+                  - img [ref=e29]
+                - button "Search by image" [ref=e31] [cursor=pointer]:
+                  - img [ref=e32]
+          - button "Search" [ref=e34] [cursor=pointer]:
+            - img [ref=e37]
+    - generic [ref=e39]:
+      - button "Settings" [ref=e41] [cursor=pointer]:
+        - img [ref=e44]
+      - generic [ref=e47]:
+        - button "Google apps" [ref=e49] [cursor=pointer]:
+          - img [ref=e50]
+        - link "Sign in" [ref=e54] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=en&passive=true&continue=https://www.google.com/search%3Fq%3Danurag%2Buniversity%2Bhyderabad%26sca_esv%3Df3003becd8d45770%26source%3Dhp%26ei%3DnCoZauO8Nauk2roPmdO5iQY%26iflsig%3DAFdpzrgAAAAAahk4rDWEOzRzADWyeBhyohd6S3MeqL4E%26ved%3D0ahUKEwjj-uCT6N2UAxUrklYBHZlpLmEQ4dUDCC4%26uact%3D5%26oq%3Danurag%2Buniversity%2Bhyderabad%26gs_lp%3DEgdnd3Mtd2l6IhthbnVyYWcgdW5pdmVyc2l0eSBoeWRlcmFiYWQyCxAuGIMBGLEDGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAESMwgUABYAHAAeACQAQCYAU2gAU2qAQExuAEDyAEA-AEBmAIBoAJQmAMAkgcBMaAHogiyBwExuAdQwgcDMC4xyAcCgAgB%26sclient%3Dgws-wiz%26sei%3DpioZav3rD-eNnesPn9TG0Aw&ec=futura_srp_og_si_72236_p
+  - generic [ref=e56]:
+    - navigation [ref=e62]:
+      - generic [ref=e68]:
+        - list [ref=e69]:
+          - listitem [ref=e70]:
+            - link "AI Mode" [ref=e73] [cursor=pointer]:
+              - /url: /search?q=anurag+university+hyderabad&sca_esv=f3003becd8d45770&udm=50&source=hp&fbs=ADc_l-aN0CWEZBOHjofHoaMMDiKpaEWjvZ2Py1XXV8d8KvlI3izczKHhF2wgz0AoHZ2f_yIK7XTASet5-C18IAAgZ4W_tl9lMlhTG0bgcXN0otq6dSIrr8QvKMOCJc2ifZlByLs9QC4a5PxYkZJITk064Ciu8vGd9OLX1EHoQjce70zTk1ygObnKSUyLH211rxpmuDu2rjdmCkF8HBQtdYAcxU0Rk7hQlg&aep=1&ntc=1&sa=X&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQ2J8OegQICBAD
+              - generic [ref=e76]: AI Mode
+          - listitem [ref=e77]:
+            - link "All" [disabled] [ref=e78]:
+              - generic [ref=e80]: All
+          - listitem [ref=e81]:
+            - link "Images" [ref=e82] [cursor=pointer]:
+              - /url: /search?sca_esv=f3003becd8d45770&udm=2&fbs=ADc_l-aN0CWEZBOHjofHoaMMDiKpaEWjvZ2Py1XXV8d8KvlI3izczKHhF2wgz0AoHZ2f_yIK7XTASet5-C18IAAgZ4W_tl9lMlhTG0bgcXN0otq6dSIrr8QvKMOCJc2ifZlByLs9QC4a5PxYkZJITk064Ciu8vGd9OLX1EHoQjce70zTk1ygObnKSUyLH211rxpmuDu2rjdmCkF8HBQtdYAcxU0Rk7hQlg&q=anurag+university+hyderabad&sa=X&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQtKgLegQIDhAB
+              - generic [ref=e84]: Images
+          - listitem [ref=e85]:
+            - link "News" [ref=e86] [cursor=pointer]:
+              - /url: /search?sca_esv=f3003becd8d45770&q=anurag+university+hyderabad&tbm=nws&source=lnms&fbs=ADc_l-aN0CWEZBOHjofHoaMMDiKpaEWjvZ2Py1XXV8d8KvlI3izczKHhF2wgz0AoHZ2f_yIK7XTASet5-C18IAAgZ4W_tl9lMlhTG0bgcXN0otq6dSIrr8QvKMOCJc2ifZlByLs9QC4a5PxYkZJITk064Ciu8vGd9OLX1EHoQjce70zTk1ygObnKSUyLH211rxpmuDu2rjdmCkF8HBQtdYAcxU0Rk7hQlg&sa=X&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQ0pQJegQIDRAB
+              - generic [ref=e88]: News
+          - listitem [ref=e89]:
+            - link "Maps" [ref=e90] [cursor=pointer]:
+              - /url: https://maps.google.com/maps?sca_esv=f3003becd8d45770&output=search&q=anurag+university+hyderabad&source=lnms&fbs=ADc_l-aN0CWEZBOHjofHoaMMDiKpaEWjvZ2Py1XXV8d8KvlI3izczKHhF2wgz0AoHZ2f_yIK7XTASet5-C18IAAgZ4W_tl9lMlhTG0bgcXN0otq6dSIrr8QvKMOCJc2ifZlByLs9QC4a5PxYkZJITk064Ciu8vGd9OLX1EHoQjce70zTk1ygObnKSUyLH211rxpmuDu2rjdmCkF8HBQtdYAcxU0Rk7hQlg&entry=mc&ved=1t:200715&ictx=111
+              - generic [ref=e92]: Maps
+          - listitem [ref=e93]:
+            - link "Videos" [ref=e94] [cursor=pointer]:
+              - /url: /search?sca_esv=f3003becd8d45770&udm=7&fbs=ADc_l-aN0CWEZBOHjofHoaMMDiKpaEWjvZ2Py1XXV8d8KvlI3izczKHhF2wgz0AoHZ2f_yIK7XTASet5-C18IAAgZ4W_tl9lMlhTG0bgcXN0otq6dSIrr8QvKMOCJc2ifZlByLs9QC4a5PxYkZJITk064Ciu8vGd9OLX1EHoQjce70zTk1ygObnKSUyLH211rxpmuDu2rjdmCkF8HBQtdYAcxU0Rk7hQlg&q=anurag+university+hyderabad&sa=X&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQtKgLegQIEBAB
+              - generic [ref=e96]: Videos
+          - listitem [ref=e97]:
+            - link "Forums" [ref=e98] [cursor=pointer]:
+              - /url: /search?sca_esv=f3003becd8d45770&udm=18&fbs=ADc_l-aN0CWEZBOHjofHoaMMDiKpaEWjvZ2Py1XXV8d8KvlI3izczKHhF2wgz0AoHZ2f_yIK7XTASet5-C18IAAgZ4W_tl9lMlhTG0bgcXN0otq6dSIrr8QvKMOCJc2ifZlByLs9QC4a5PxYkZJITk064Ciu8vGd9OLX1EHoQjce70zTk1ygObnKSUyLH211rxpmuDu2rjdmCkF8HBQtdYAcxU0Rk7hQlg&q=anurag+university+hyderabad&sa=X&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQs6gLegQIChAB
+              - generic [ref=e100]: Forums
+          - listitem [ref=e101]:
+            - button "More filters" [ref=e102] [cursor=pointer]:
+              - generic "More filters" [ref=e103]:
+                - generic [ref=e104]:
+                  - generic [ref=e105]: More
+                  - img [ref=e107]
+        - button "Tools" [ref=e110] [cursor=pointer]:
+          - generic [ref=e112]:
+            - generic [ref=e113]: Tools
+            - img [ref=e115]
+    - heading "Search Results" [level=1] [ref=e117]
+    - generic [ref=e122]:
+      - main [ref=e123]:
+        - tabpanel [ref=e137]:
+          - generic [ref=e141]:
+            - generic [ref=e146]:
+              - generic [ref=e153]:
+                - button "See photos" [ref=e157] [cursor=pointer]:
+                  - generic [ref=e160]: See photos
+                - generic [ref=e161]:
+                  - link "Map of Anurag University, Hyderabad" [ref=e163] [cursor=pointer]:
+                    - /url: /maps/place/Anurag+University,+Hyderabad/data=!4m2!3m1!1s0x0:0x2ca84b53416f0abd?sa=X&ved=1t:2428&ictx=111
+                    - img "Map of Anurag University, Hyderabad" [ref=e165]
+                  - link "See outside" [ref=e173] [cursor=pointer]:
+                    - /url: /local/place/fid/0x3bcb76730bf4dccf:0x2ca84b53416f0abd/photosphere?iu=https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid%3Dm1FB8xjTdISh_JjxznGOIQ%26cb_client%3Dsearch.gws-prod.gps%26yaw%3D176.3904%26pitch%3D0%26thumbfov%3D100%26w%3D0%26h%3D0&ik=CAISFm0xRkI4eGpUZElTaF9Kanh6bkdPSVE%3D&sa=X&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQpx96BAgZEBE
+                    - generic [ref=e175]: See outside
+              - generic [ref=e178]:
+                - heading "Anurag University, Hyderabad" [level=2] [ref=e181]
+                - generic [ref=e182]:
+                  - generic [ref=e184]:
+                    - text: "4.0"
+                    - img "Rated 4.0 out of 5," [ref=e185]
+                    - button "2,298 Google reviews" [ref=e190] [cursor=pointer]
+                    - text: University in Majarguda, Telangana
+                  - button "More options for Anurag University, Hyderabad" [ref=e197] [cursor=pointer]:
+                    - img "More options for Anurag University, Hyderabad" [ref=e198]:
+                      - img [ref=e200]
+            - generic [ref=e205]:
+              - generic [ref=e214]:
+                - link "Website" [ref=e216] [cursor=pointer]:
+                  - /url: https://anurag.edu.in/
+                  - generic [ref=e217]:
+                    - img [ref=e219]
+                    - generic [ref=e221]: Website
+                - link "Directions" [ref=e223]:
+                  - generic [ref=e224] [cursor=pointer]:
+                    - img [ref=e226]
+                    - generic [ref=e231]: Directions
+                - button "+4":
+                  - generic [ref=e233] [cursor=pointer]: "+4"
+              - separator [ref=e234]
+            - generic [ref=e238]:
+              - generic [ref=e240]:
+                - generic [ref=e244]:
+                  - heading "Description" [level=3] [ref=e245]
+                  - generic [ref=e246]: Anurag University is a Private University located in Venkatapur, Medchal-Malkajgiri district, Hyderabad, Telangana, India. Established in 2020, and is one of the First Private Universities in the State of Telangana.
+                  - link "Wikipedia" [ref=e248] [cursor=pointer]:
+                    - /url: https://en.wikipedia.org/wiki/Anurag_University
+                - generic [ref=e250]:
+                  - generic [ref=e251]:
+                    - link "Address" [ref=e252] [cursor=pointer]:
+                      - /url: /search?sca_esv=f3003becd8d45770&q=anurag+university+address&ludocid=3217904754708384445&sa=X&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQ6BN6BAghEAI
+                    - text: ":"
+                  - text: Ghatkesar Rd, Venkatapur, Hyderabad, Majarguda, Telangana 500088
+                - generic [ref=e255]:
+                  - generic [ref=e256]: "Founded:"
+                  - generic [ref=e257]: "2020"
+                - generic [ref=e260]:
+                  - generic [ref=e261]: "Campus:"
+                  - generic [ref=e262]: Urban, 107 acres (43 ha)
+                - generic [ref=e265]:
+                  - generic [ref=e266]: "Chancellor:"
+                  - generic [ref=e267]: Dr. U. B. Desai
+                - generic [ref=e270]:
+                  - generic [ref=e271]: "Phone:"
+                  - link "Call phone number 081810 57057" [ref=e274] [cursor=pointer]:
+                    - /url: "#"
+                    - text: 081810 57057
+                - generic [ref=e275]:
+                  - generic [ref=e276]:
+                    - link "Hours" [ref=e277] [cursor=pointer]:
+                      - /url: /search?sca_esv=f3003becd8d45770&q=anurag+university+hours&ludocid=3217904754708384445&sa=X&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQ6BN6BAgkEAI
+                    - text: ":"
+                  - button "Open · Closes 4:05 pm" [ref=e279]:
+                    - generic [ref=e285]: Open · Closes 4:05 pm
+                - button "Suggest an edit" [ref=e293] [cursor=pointer]
+              - separator [ref=e294]
+            - generic [ref=e298]:
+              - generic [ref=e301]:
+                - generic [ref=e302]:
+                  - heading "Reviews" [level=3] [ref=e303]
+                  - button "More info" [ref=e308] [cursor=pointer]:
+                    - img [ref=e310]
+                  - generic [ref=e312]:
+                    - button "Write a review" [ref=e316] [cursor=pointer]:
+                      - generic [ref=e317]: Write a review
+                    - link "Add photos" [ref=e319] [cursor=pointer]:
+                      - /url: "#"
+                - button "2,298 Google reviews" [ref=e323] [cursor=pointer]
+                - generic [ref=e324]:
+                  - generic [ref=e325]:
+                    - generic [ref=e326]:
+                      - link "Sandeep Bajjuri":
+                        - /url: https://www.google.com/maps/contrib/108486995654377794565?hl=en-IN&ved=1t:31296&ictx=111
+                        - img "Sandeep Bajjuri" [ref=e328] [cursor=pointer]
+                    - generic [ref=e329]:
+                      - link "\"Best for collage life with good Atmosphere and best infrastructure\"" [ref=e330] [cursor=pointer]:
+                        - /url: https://www.google.com/maps/reviews/data=!4m5!14m4!1m3!1m2!1s108486995654377794565!2s0x3bcb76730bf4dccf:0x2ca84b53416f0abd?ved=1t:31295&ictx=111
+                      - img "Rated 5.0 out of 5," [ref=e332]
+                  - generic [ref=e335]:
+                    - generic [ref=e336]:
+                      - link "Run Machine":
+                        - /url: https://www.google.com/maps/contrib/105001019584473197764?hl=en-IN&ved=1t:31296&ictx=111
+                        - img "Run Machine" [ref=e338] [cursor=pointer]
+                    - generic [ref=e339]:
+                      - link "\"The orientation was fine, but the staff’s behavior was disappointing.\"" [ref=e340] [cursor=pointer]:
+                        - /url: https://www.google.com/maps/reviews/data=!4m5!14m4!1m3!1m2!1s105001019584473197764!2s0x3bcb76730bf4dccf:0x2ca84b53416f0abd?ved=1t:31295&ictx=111
+                      - img "Rated 4.0 out of 5," [ref=e342]
+                  - generic [ref=e345]:
+                    - generic [ref=e346]:
+                      - link "Swathi Panugothu":
+                        - /url: https://www.google.com/maps/contrib/113900572851607750537?hl=en-IN&ved=1t:31296&ictx=111
+                        - img "Swathi Panugothu" [ref=e348] [cursor=pointer]
+                    - generic [ref=e349]:
+                      - link "\"The food served in the canteen is also tasty with reasonable cost.\"" [ref=e350] [cursor=pointer]:
+                        - /url: https://www.google.com/maps/reviews/data=!4m5!14m4!1m3!1m2!1s113900572851607750537!2s0x3bcb76730bf4dccf:0x2ca84b53416f0abd?ved=1t:31295&ictx=111
+                      - img "Rated 5.0 out of 5," [ref=e352]
+                - button "View all Google reviews" [ref=e357] [cursor=pointer]
+              - separator [ref=e358]
+            - generic [ref=e362]:
+              - generic [ref=e367]:
+                - generic [ref=e368]:
+                  - heading "From Anurag University, Hyderabad" [level=3] [ref=e369]
+                  - button "Report description" [ref=e371]:
+                    - img [ref=e372]
+                - generic [ref=e375]:
+                  - text: "\"Anurag University, Hyderabad, is a UGC-recognised private university on Ghatkesar Road, Venkatapur, offering undergraduate, postgraduate, and doctoral programs across Engineering, Pharmacy, Management, Agricultural Sciences, Liberal Arts, and..."
+                  - button "Show more" [ref=e376] [cursor=pointer]: More
+              - separator [ref=e377]
+            - generic [ref=e381]:
+              - heading "Reviews" [level=3] [ref=e384]
+              - generic [ref=e388]:
+                - heading "Reviews from the web" [level=3] [ref=e389]
+                - generic [ref=e391]:
+                  - link "Anurag University, Hyderabad got a 4.206 stars review on Shiksha.com. 714 reviews" [ref=e392] [cursor=pointer]:
+                    - /url: https://www.shiksha.com/university/anurag-university-hyderabad-138335/reviews
+                    - generic [ref=e393]: Shiksha.com
+                    - generic [ref=e394]: 4.2/5
+                    - generic [ref=e395]: 714 reviews
+                  - link "Anurag University, Hyderabad got a 3.5 stars review on Facebook. 8 votes" [ref=e396] [cursor=pointer]:
+                    - /url: https://www.facebook.com/Anuraguniversity/
+                    - generic [ref=e397]: Facebook
+                    - generic [ref=e398]: 3.5/5
+                    - generic [ref=e399]: 8 votes
+                  - link "Anurag University, Hyderabad got a 3.9 stars review on Justdial. 2,482 votes" [ref=e400] [cursor=pointer]:
+                    - /url: https://www.justdial.com/Rangareddy/Anurag-University-Pjs-Colony-Venkatapur-Ghatkesar/040PXX40-XX40-220610165642-X9E8_BZDET
+                    - generic [ref=e401]: Justdial
+                    - generic [ref=e402]: 3.9/5
+                    - generic [ref=e403]: 2,482 votes
+              - separator [ref=e404]
+            - generic [ref=e408]:
+              - generic [ref=e410]:
+                - heading "Profiles" [level=3] [ref=e411]
+                - generic [ref=e412]:
+                  - link "Instagram" [ref=e416] [cursor=pointer]:
+                    - /url: https://www.instagram.com/anuraguniversity/
+                    - generic [ref=e422]: Instagram
+                  - link "X (Twitter)" [ref=e426] [cursor=pointer]:
+                    - /url: https://twitter.com/anuraguniversi1
+                    - generic [ref=e432]: X (Twitter)
+                  - link "LinkedIn" [ref=e436] [cursor=pointer]:
+                    - /url: https://in.linkedin.com/in/anurag-university-sabzee-3b547a271
+                    - generic [ref=e442]: LinkedIn
+                  - link "YouTube" [ref=e446] [cursor=pointer]:
+                    - /url: https://www.youtube.com/@AnuragUniversi1
+                    - generic [ref=e452]: YouTube
+              - separator [ref=e453]
+            - generic [ref=e457]:
+              - heading "People also search for" [level=3] [ref=e460]
+              - generic [ref=e465]:
+                - list [ref=e466]:
+                  - listitem [ref=e468]:
+                    - generic [ref=e469]:
+                      - link "C.V.S.R COLLEGE OF ENGINEERING":
+                        - /url: /search?sca_esv=f3003becd8d45770&si=AL3DRZGNtcdgKOqVhotcr-UG2kkYpwR2WO4qu3O00NmpwBmLncbzluY0l5EBMM8x3IBw0c-TFORDYhHIonV1kIbvaEuL2XBfJ7UZwEgC0k95050QXiMotFUTayi7HK4uwYZZNS4z7CmmpW925IRLbrIINltg776HjdcW1jLxqHIbyRXR4mVJEC5mDSWBRU6Wm0QjSgerQ84jtiFvuuwfGY1Y4N9-smL7viLyRXRWKQXT7at0LwZW2OwJLiP5mujM7KwUXlA6tElSb-rAoPDyXaavVJ5rdYam98EPSM-SqkXwpHvriel9Pfj7x8DQeEuglo316YsqM0xTwIy-BIbv-HpJIBY43S4IjA%3D%3D&q=C.V.S.R+COLLEGE+OF+ENGINEERING&sa=X&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQs9oBKAB6BAgeEAU
+                      - heading [level=3] [ref=e474]:
+                        - generic [ref=e475]: C.V.S.R COLLEGE OF ENGINEERING
+                  - listitem [ref=e477]:
+                    - generic [ref=e478]:
+                      - link "Malla Reddy University":
+                        - /url: /search?sca_esv=f3003becd8d45770&si=AL3DRZGNtcdgKOqVhotcr-UG2kkYpwR2WO4qu3O00NmpwBmLnYW0tk2UJQ-PCUYM8bLLq0aZq0qCztNWNS_U1ADU1brWlCBlVlAHaRAZJu3U2ETPIgLPbSLHzwD3FVKlo2iWJRPJ5_mj5ujFnJTVdRUBm_DnA4_nsDqCxkRrp7sB2bM0o_xjMq8tXnsknVfPINxJrPmCm1gGETvIMd_1ykGtEVY9HaqZYZSyYhwm-i2mQX_i0X7IX5jDcU2GQ0gSQO1_k568I-ly-zA2UtUUgo_ut7N-kuRX9TzKbweoWH4de-hTn2eN3YMGeecYT0nZJjwCl3v4KA5FrYdw_jAeGhENnvU0DLMEog%3D%3D&q=Malla+Reddy+University&sa=X&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQs9oBKAB6BAgeEAk
+                      - heading [level=3] [ref=e483]:
+                        - generic [ref=e484]: Malla Reddy University
+                  - listitem [ref=e486]:
+                    - generic [ref=e487]:
+                      - link "Mahindra University":
+                        - /url: /search?sca_esv=f3003becd8d45770&si=AL3DRZGNtcdgKOqVhotcr-UG2kkYpwR2WO4qu3O00NmpwBmLnYZe7CV5b8BT9468NgjTzqbnbnILpJG9SgQfl7Vu5tEGPHAbU8DYpvl32jmGy5t61BCToa27MeJMwBo0EtfYqo38ZOHYBLJNbJ2RVQaU2AZZQxMowCGlNYc8ljQAv9WqsWEl6KuQMQ4mXSvdNYlOL4KmqZKojU83HKaCexB5dbqegxlE_4otgxZZCDhGQN-2OAVA-LYy02Y3UuZFWvbkViuV_t09FF-7QLZmk5qjxnRcCM6dEVw8qrkUCnZWn1piDMgZOYSngfqCvQRoI3OOQZb8f6tr&q=Mahindra+University&sa=X&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQs9oBKAB6BAgeEA0
+                      - heading [level=3] [ref=e492]:
+                        - generic [ref=e493]: Mahindra University
+                  - listitem [ref=e495]:
+                    - generic [ref=e496]:
+                      - link "Vardhaman College of Engineering Hyderabad":
+                        - /url: /search?sca_esv=f3003becd8d45770&si=AL3DRZGDMkmBg1SB5TH8o8Xeh03tgmwpgZCgiYi5BFB_ELNOTMb-SkEGYMxk3xD8Mm6Z_ri2RB7aCM-NxhfHAnGT5jUY5wyf5-BSBRCY89AIFzGSqxUCBoJwub_xf5kw9nSJw5joUCky6S8kApziJHopBqw4N-pHRwhW3WKrboiPDKi5eYrjYsYSGmVia8_hLP2SWhEVQT7RmSKYCTgBrVSnVMZWYQ1yZy6wBChRjT9xrVCEF9INfRfj0UdD2LEYF0re-RxngQpsKMgASY-jxHh7iKce_tmzeSTGug0QX8Q-JddNIVQF3tN32kGONDtwkNkNsoVdU6ZQviUBiz6j37_ly2k6rCjOfQ%3D%3D&q=Vardhaman+College+of+Engineering&sa=X&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQs9oBKAB6BAgeEBE
+                      - generic [ref=e500]:
+                        - heading [level=3] [ref=e501]:
+                          - generic [ref=e502]: Vardhaman College of Engineering
+                        - generic [ref=e505]: Hyderabad
+                - link "See more" [ref=e507] [cursor=pointer]:
+                  - /url: /search?sca_esv=f3003becd8d45770&q=Anurag+University&stick=H4sIAAAAAAAAAONgFuLVT9c3NMwzqCpOS8-tUELlagkGZ6aklidWFvulVpQEl6QWFP9iFAtIzS_ISVVIzCnOVyhOTSxKzlBIyy9axCromFdalJiuEJqXWZZaVJxZUrmDlfEWmyTDUuXb_M9CMxbGVhx7ojzr3fNpTX1WK1JN8wBgOb_RfwAAAA&sa=X&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQzO0BKAR6BAgeEBM
+                  - generic [ref=e508]:
+                    - generic [ref=e509]: See more
+                    - img [ref=e511]
+            - generic [ref=e519]:
+              - heading "Web result with site links" [level=2] [ref=e520]
+              - generic [ref=e521]:
+                - generic [ref=e525]:
+                  - generic [ref=e527]:
+                    - link "Anurag University | Top Private University in Hyderabad ... Anurag University https://www.anurag.edu.in" [ref=e529] [cursor=pointer]:
+                      - /url: https://www.anurag.edu.in/
+                      - heading "Anurag University | Top Private University in Hyderabad ..." [level=3] [ref=e530]
+                      - generic [ref=e535]:
+                        - generic [ref=e537]: Anurag University
+                        - generic [ref=e539]: https://www.anurag.edu.in
+                    - button "About this result" [ref=e540] [cursor=pointer]:
+                      - img [ref=e543]
+                  - generic [ref=e547]:
+                    - emphasis [ref=e548]: Anurag University
+                    - text: — NAAC A+ accredited, UGC-recognized private university in
+                    - emphasis [ref=e549]: Hyderabad
+                    - text: . 70+ programs, 97% placements, 53 LPA highest package.
+                - group "Personalised recommendations based on your history" [ref=e550]:
+                  - rowgroup [ref=e551]:
+                    - row "Anurag University, Hyderabad Apply to Anurag University for 2026-27. NAAC A+ accredited ..." [ref=e552]:
+                      - cell "Anurag University, Hyderabad Apply to Anurag University for 2026-27. NAAC A+ accredited ..." [ref=e553]:
+                        - generic [ref=e559]:
+                          - heading "Anurag University, Hyderabad" [level=3] [ref=e560]:
+                            - link "Anurag University, Hyderabad" [ref=e561] [cursor=pointer]:
+                              - /url: https://admissions.anurag.edu.in/
+                              - text: Anurag University, Hyderabad
+                          - generic [ref=e564]: Apply to Anurag University for 2026-27. NAAC A+ accredited ...
+                    - row "Programs Browse all 70+ academic programs at Anurag University ..." [ref=e565]:
+                      - cell "Programs Browse all 70+ academic programs at Anurag University ..." [ref=e566]:
+                        - generic [ref=e572]:
+                          - heading "Programs" [level=3] [ref=e573]:
+                            - link "Programs" [ref=e574] [cursor=pointer]:
+                              - /url: https://www.anurag.edu.in/programs
+                              - text: Programs
+                          - generic [ref=e577]: Browse all 70+ academic programs at Anurag University ...
+                    - row "Careers Apply here to join Anurag University, a leading ..." [ref=e578]:
+                      - cell "Careers Apply here to join Anurag University, a leading ..." [ref=e579]:
+                        - generic [ref=e585]:
+                          - heading "Careers" [level=3] [ref=e586]:
+                            - link "Careers" [ref=e587] [cursor=pointer]:
+                              - /url: https://careers.anurag.edu.in/
+                              - text: Careers
+                          - generic [ref=e590]: Apply here to join Anurag University, a leading ...
+                    - row "Results Check Anurag University examination results — semester ..." [ref=e591]:
+                      - cell "Results Check Anurag University examination results — semester ..." [ref=e592]:
+                        - generic [ref=e598]:
+                          - heading "Results" [level=3] [ref=e599]:
+                            - link "Results" [ref=e600] [cursor=pointer]:
+                              - /url: https://www.anurag.edu.in/results
+                              - text: Results
+                          - generic [ref=e603]: Check Anurag University examination results — semester ...
+                    - row "Fee Structure 2026-27 View Anurag University fee structure for 2026-27 — tuition ..." [ref=e604]:
+                      - cell "Fee Structure 2026-27 View Anurag University fee structure for 2026-27 — tuition ..." [ref=e605]:
+                        - generic [ref=e611]:
+                          - heading "Fee Structure 2026-27" [level=3] [ref=e612]:
+                            - link "Fee Structure 2026-27" [ref=e613] [cursor=pointer]:
+                              - /url: https://www.anurag.edu.in/fees
+                              - text: Fee Structure 2026-27
+                          - generic [ref=e616]: View Anurag University fee structure for 2026-27 — tuition ...
+                    - row "More results from anurag.edu.in »" [ref=e618]:
+                      - cell "More results from anurag.edu.in »" [ref=e619]:
+                        - link "More results from anurag.edu.in »" [ref=e621] [cursor=pointer]:
+                          - /url: /search?q=anurag+university+hyderabad+site:anurag.edu.in&sca_esv=f3003becd8d45770&sa=X&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQrAN6BAhKEAE
+            - generic [ref=e625]:
+              - heading "People also ask" [level=2] [ref=e628]
+              - generic [ref=e633]:
+                - button "Is Anurag University private or government?" [ref=e639] [cursor=pointer]:
+                  - generic [ref=e641]: Is Anurag University private or government?
+                  - img [ref=e644]
+                - button "What are the fees of Anurag University in Hyderabad?" [ref=e653] [cursor=pointer]:
+                  - generic [ref=e655]: What are the fees of Anurag University in Hyderabad?
+                  - img [ref=e658]
+                - button "Is Anurag University top 10?" [ref=e667] [cursor=pointer]:
+                  - generic [ref=e669]: Is Anurag University top 10?
+                  - img [ref=e672]
+                - button "What is the highest package offered in Anurag college?" [ref=e681] [cursor=pointer]:
+                  - generic [ref=e683]: What is the highest package offered in Anurag college?
+                  - img [ref=e686]
+            - generic [ref=e696]:
+              - generic [ref=e699]:
+                - link "Anurag University Wikipedia https://en.wikipedia.org › wiki › Anurag_University" [ref=e701] [cursor=pointer]:
+                  - /url: https://en.wikipedia.org/wiki/Anurag_University
+                  - heading "Anurag University" [level=3] [ref=e702]
+                  - generic [ref=e707]:
+                    - generic [ref=e709]: Wikipedia
+                    - generic [ref=e711]: https://en.wikipedia.org › wiki › Anurag_University
+                - button "About this result" [ref=e712] [cursor=pointer]:
+                  - img [ref=e715]
+              - generic [ref=e718]:
+                - generic [ref=e719]:
+                  - text: Anurag University
+                  - emphasis [ref=e720]: is a Private University located in Venkatapur, Medchal-Malkajgiri district, Hyderabad
+                  - text: ", Telangana, India. Established in 2020, and is one ..."
+                - link "Read more" [ref=e721] [cursor=pointer]:
+                  - /url: https://en.wikipedia.org/wiki/Anurag_University#:~:text=Anurag%20University%20is%20a%20Private,in%20the%20State%20of%20Telangana.
+            - generic [ref=e729]:
+              - generic [ref=e732]:
+                - link "Anurag University (@anuraguniversity) Instagram · anuraguniversity 22.8K+ followers" [ref=e734] [cursor=pointer]:
+                  - /url: https://www.instagram.com/anuraguniversity/
+                  - heading "Anurag University (@anuraguniversity)" [level=3] [ref=e735]
+                  - generic [ref=e740]:
+                    - generic [ref=e742]: Instagram · anuraguniversity
+                    - generic [ref=e744]: 22.8K+ followers
+                - button "About this result" [ref=e745] [cursor=pointer]:
+                  - img [ref=e748]
+              - generic [ref=e751]:
+                - generic [ref=e752]:
+                  - text: Building a competent & capable generation to make a great tomorrow through
+                  - emphasis [ref=e753]: Engineering,Pharmacy, Management,Nursing, Medical & Agricultural Sciences
+                  - text: .
+                - link "Read more" [ref=e754] [cursor=pointer]:
+                  - /url: https://www.instagram.com/anuraguniversity/#:~:text=Building%20a%20competent%20%26%20capable,Management%2CNursing%2C%20Medical%20%26%20Agricultural%20Sciences.
+            - generic [ref=e761]:
+              - heading "Latest posts from Anurag University, Hyderabad" [level=2] [ref=e764]:
+                - generic [ref=e766]: Latest posts from Anurag University, Hyderabad
+              - generic [ref=e768]:
+                - list [ref=e770]:
+                  - generic [ref=e771]:
+                    - listitem [ref=e772]:
+                      - generic [ref=e776]:
+                        - 'link "The way engineering is taught is changing. And it starts from Day 1. Most degrees still look the same — lectures, memorisation, exams. Repeat. Anurag University has rebuilt the entire journey. A four year blueprint built on curiosity, systems thinking, real problems and hands-on creation — starting from Semester 1. Not Year 4. Join us live this Sunday to see exactly how the future era of engineering is being built. Sunday, 7th June 2026 | 11:00 AM IST | Live on Zoom — Free Register via link in bio #EngineeringEducation #FutureOfEngineering #AnuragUniversity #NewAgeEngineering #SystemsThinking [EngineeringLife, BTech, AnuragPathwaysLive, Hyderabad , University] 18 hours ago Anurag University /Anurag Group Of Institutions Facebook" [ref=e777] [cursor=pointer]':
+                          - /url: https://www.facebook.com/Anuraguniversity/posts/the-way-engineering-is-taught-is-changing-and-it-starts-from-day-1-most-degrees-/1599709865495915/
+                          - generic [ref=e781]:
+                            - 'heading "The way engineering is taught is changing. And it starts from Day 1. Most degrees still look the same — lectures, memorisation, exams. Repeat. Anurag University has rebuilt the entire journey. A four year blueprint built on curiosity, systems thinking, real problems and hands-on creation — starting from Semester 1. Not Year 4. Join us live this Sunday to see exactly how the future era of engineering is being built. Sunday, 7th June 2026 | 11:00 AM IST | Live on Zoom — Free Register via link in bio #EngineeringEducation #FutureOfEngineering #AnuragUniversity #NewAgeEngineering #SystemsThinking [EngineeringLife, BTech, AnuragPathwaysLive, Hyderabad , University]" [level=3] [ref=e783]'
+                            - generic [ref=e784]: 18 hours ago
+                            - generic [ref=e793]:
+                              - generic [ref=e794]: Anurag University /Anurag Group Of Institutions
+                              - generic [ref=e795]: Facebook
+                        - button "About this result" [ref=e799] [cursor=pointer]:
+                          - img [ref=e802]
+                    - listitem [ref=e804]:
+                      - generic [ref=e808]:
+                        - 'link "A journey of resilience! We are proud to share our achievements in THE WEEK University Rankings 2026. Ranked among the Top Universities in South Zone & Telangana across categories. This milestone reflects the dedication of our students, faculty, researchers, alumni, and the entire Anurag University family. Together, we continue to inspire excellence and shape the future. #AnuragUniversity #TheWeekRankings #UniversityRankings #InspiringTomorrows #BeMoreThanOne 90+ likes · 2 days ago anuraguniversity Instagram" [ref=e809] [cursor=pointer]':
+                          - /url: https://www.instagram.com/p/DYzPIYeNRGR/
+                          - generic [ref=e813]:
+                            - 'heading "A journey of resilience! We are proud to share our achievements in THE WEEK University Rankings 2026. Ranked among the Top Universities in South Zone & Telangana across categories. This milestone reflects the dedication of our students, faculty, researchers, alumni, and the entire Anurag University family. Together, we continue to inspire excellence and shape the future. #AnuragUniversity #TheWeekRankings #UniversityRankings #InspiringTomorrows #BeMoreThanOne" [level=3] [ref=e815]'
+                            - generic [ref=e816]: 90+ likes · 2 days ago
+                            - generic [ref=e825]:
+                              - generic [ref=e826]: anuraguniversity
+                              - generic [ref=e827]: Instagram
+                        - button "About this result" [ref=e831] [cursor=pointer]:
+                          - img [ref=e834]
+                    - listitem [ref=e836]:
+                      - generic [ref=e838]:
+                        - 'link "0:39 Is AI really taking over careers? [Ai, Careers, jobs, Anurag University, Placements, Offers, Campus Placements, Apply Now, Admissions] #anuraguniversity #inspiringtomorrows #campusplacements #aijobs #beeveryoneyoudreamtobe 190+ likes · 3 days ago anuraguniversity Instagram" [ref=e839] [cursor=pointer]':
+                          - /url: https://www.instagram.com/reel/DYwjGRZRemI/
+                          - generic [ref=e844]:
+                            - img [ref=e845]
+                            - generic [ref=e847]: 0:39
+                          - generic [ref=e848]:
+                            - 'heading "Is AI really taking over careers? [Ai, Careers, jobs, Anurag University, Placements, Offers, Campus Placements, Apply Now, Admissions] #anuraguniversity #inspiringtomorrows #campusplacements #aijobs #beeveryoneyoudreamtobe" [level=3] [ref=e850]'
+                            - generic [ref=e851]: 190+ likes · 3 days ago
+                            - generic [ref=e859]:
+                              - generic [ref=e860]: anuraguniversity
+                              - generic [ref=e861]: Instagram
+                        - button "About this result" [ref=e865] [cursor=pointer]:
+                          - img [ref=e868]
+                    - listitem [ref=e870]:
+                      - generic [ref=e875]:
+                        - 'link "A journey of learning, growth, and global exposure begins. Wishing Hasini Pathikudupa and Smrithi Thimmaraju a memorable and enriching semester exchange experience at OTH Regensburg under the Global Exchange Programme by Anurag University. Here’s to new experiences, global learning, and inspiring journeys ahead! #SemesterExchange #AnuragUniversity #StudyAbroad #InspiringTomorrows #OTHRegensburg 460+ likes · 1 week ago anuraguniversity Instagram" [ref=e876] [cursor=pointer]':
+                          - /url: https://www.instagram.com/p/DYm1kliETrK/
+                          - generic [ref=e880]:
+                            - 'heading "A journey of learning, growth, and global exposure begins. Wishing Hasini Pathikudupa and Smrithi Thimmaraju a memorable and enriching semester exchange experience at OTH Regensburg under the Global Exchange Programme by Anurag University. Here’s to new experiences, global learning, and inspiring journeys ahead! #SemesterExchange #AnuragUniversity #StudyAbroad #InspiringTomorrows #OTHRegensburg" [level=3] [ref=e882]'
+                            - generic [ref=e883]: 460+ likes · 1 week ago
+                            - generic [ref=e892]:
+                              - generic [ref=e893]: anuraguniversity
+                              - generic [ref=e894]: Instagram
+                        - button "About this result" [ref=e898] [cursor=pointer]:
+                          - img [ref=e901]
+                    - listitem [ref=e903]:
+                      - generic [ref=e906]:
+                        - link "0:26 Remarkable offers, top recruiters 370+ views · 1 week ago Anurag University YouTube" [ref=e907] [cursor=pointer]:
+                          - /url: https://www.youtube.com/shorts/w3KttLdOEow
+                          - generic [ref=e915]:
+                            - img [ref=e916]
+                            - generic [ref=e918]: 0:26
+                          - generic [ref=e919]:
+                            - heading "Remarkable offers, top recruiters" [level=3] [ref=e921]
+                            - generic [ref=e922]: 370+ views · 1 week ago
+                            - generic [ref=e930]:
+                              - generic [ref=e931]: Anurag University
+                              - generic [ref=e932]: YouTube
+                        - button "About this result" [ref=e936] [cursor=pointer]:
+                          - img [ref=e939]
+                    - listitem [ref=e941]:
+                      - generic [ref=e944]:
+                        - 'link "0:25 Remarkable offers, top recruiters, and students turning ambition into achievements. The numbers say it all — at Anurag University, be more than one. [Anurag University, Placements, Offers, Be More Than One, Campus Placements, Companies, Careers, Inspiring Tomorrows] #Placements #Careers #CampusPlacements #InspiringTomorrows #AnuragUniversity 100+ likes · 1 week ago anuraguniversity Instagram" [ref=e945] [cursor=pointer]':
+                          - /url: https://www.instagram.com/reel/DYj3jWbRgYz/
+                          - generic [ref=e950]:
+                            - img [ref=e951]
+                            - generic [ref=e953]: 0:25
+                          - generic [ref=e954]:
+                            - 'heading "Remarkable offers, top recruiters, and students turning ambition into achievements. The numbers say it all — at Anurag University, be more than one. [Anurag University, Placements, Offers, Be More Than One, Campus Placements, Companies, Careers, Inspiring Tomorrows] #Placements #Careers #CampusPlacements #InspiringTomorrows #AnuragUniversity" [level=3] [ref=e956]'
+                            - generic [ref=e957]: 100+ likes · 1 week ago
+                            - generic [ref=e965]:
+                              - generic [ref=e966]: anuraguniversity
+                              - generic [ref=e967]: Instagram
+                        - button "About this result" [ref=e971] [cursor=pointer]:
+                          - img [ref=e974]
+                    - listitem [ref=e976]:
+                      - generic [ref=e981]:
+                        - link [ref=e982] [cursor=pointer]:
+                          - /url: https://www.instagram.com/p/DYhhv5MR0y2/
+                          - generic [ref=e986]:
+                            - heading [level=3] [ref=e988]
+                            - generic [ref=e989]: 100+ likes · 1 week ago
+                            - generic [ref=e998]:
+                              - generic [ref=e999]: anuraguniversity
+                              - generic [ref=e1000]: Instagram
+                        - button "About this result" [ref=e1004] [cursor=pointer]:
+                          - img [ref=e1007]
+                    - listitem [ref=e1009]:
+                      - generic [ref=e1012]:
+                        - link "9:21 What Makes a Business Graduate Truly Future-Ready? | Prof. Heike & Prof. Javid in Conversation. 140+ views · 1 week ago Anurag University YouTube" [ref=e1013] [cursor=pointer]:
+                          - /url: https://www.youtube.com/watch?v=6UvHe8he5gI
+                          - generic [ref=e1018]:
+                            - img [ref=e1019]
+                            - generic [ref=e1021]: 9:21
+                          - generic [ref=e1022]:
+                            - heading "What Makes a Business Graduate Truly Future-Ready? | Prof. Heike & Prof. Javid in Conversation." [level=3] [ref=e1024]
+                            - generic [ref=e1025]: 140+ views · 1 week ago
+                            - generic [ref=e1033]:
+                              - generic [ref=e1034]: Anurag University
+                              - generic [ref=e1035]: YouTube
+                        - button "About this result" [ref=e1039] [cursor=pointer]:
+                          - img [ref=e1042]
+                    - listitem [ref=e1044]:
+                      - generic [ref=e1049]:
+                        - 'link "Aspirations High. Offers Higher. We proudly congratulate Ms. Nomula Vennala, B.Tech (CSE) of Batch 2026 on securing an impressive package of ₹30 Lakhs Per Annum as an Associate Engineer at Qualcomm with This achievement reflects her dedication and perseverance. We wish her continued success as she embarks on this remarkable professional journey. #AUPlacements #InspiringTomorrows #StudentSuccess #BeEveryoneYouDreamToBe #Qualcomm 3 reactions · 2 weeks ago Anurag University /Anurag Group Of Institutions Facebook" [ref=e1050] [cursor=pointer]':
+                          - /url: https://www.facebook.com/Anuraguniversity/posts/aspirations-high-offers-higherwe-proudly-congratulate-ms-nomula-vennala-btech-cs/1587262760073959/
+                          - generic [ref=e1054]:
+                            - 'heading "Aspirations High. Offers Higher. We proudly congratulate Ms. Nomula Vennala, B.Tech (CSE) of Batch 2026 on securing an impressive package of ₹30 Lakhs Per Annum as an Associate Engineer at Qualcomm with This achievement reflects her dedication and perseverance. We wish her continued success as she embarks on this remarkable professional journey. #AUPlacements #InspiringTomorrows #StudentSuccess #BeEveryoneYouDreamToBe #Qualcomm" [level=3] [ref=e1056]'
+                            - generic [ref=e1057]: 3 reactions · 2 weeks ago
+                            - generic [ref=e1066]:
+                              - generic [ref=e1067]: Anurag University /Anurag Group Of Institutions
+                              - generic [ref=e1068]: Facebook
+                        - button "About this result" [ref=e1072] [cursor=pointer]:
+                          - img [ref=e1075]
+                    - listitem [ref=e1077]:
+                      - generic [ref=e1082]:
+                        - 'link "Congratulations to Nomula Vennela of B.Tech CSE Batch 2026 on securing an incredible offer of ₹30 LPA as an Associate Engineer at Qualcomm! Your hard work and determination have truly paid off. Wishing you endless success as you step into this exciting new journey. [Placements, Campus Placements, AU Placements, Qualcomm, 2026 Placements, Anurag University, Be Everyone You Dream To Be, Be More Than One, Inspiring Tomorrows] #AnuragUniversity #AUPlacements #Qualcomm #CampusPlacements #InspiringTomorrows 630+ likes · 2 weeks ago anuraguniversity Instagram" [ref=e1083] [cursor=pointer]':
+                          - /url: https://www.instagram.com/p/DYXK-GwRCvz/
+                          - generic [ref=e1087]:
+                            - 'heading "Congratulations to Nomula Vennela of B.Tech CSE Batch 2026 on securing an incredible offer of ₹30 LPA as an Associate Engineer at Qualcomm! Your hard work and determination have truly paid off. Wishing you endless success as you step into this exciting new journey. [Placements, Campus Placements, AU Placements, Qualcomm, 2026 Placements, Anurag University, Be Everyone You Dream To Be, Be More Than One, Inspiring Tomorrows] #AnuragUniversity #AUPlacements #Qualcomm #CampusPlacements #InspiringTomorrows" [level=3] [ref=e1089]'
+                            - generic [ref=e1090]: 630+ likes · 2 weeks ago
+                            - generic [ref=e1099]:
+                              - generic [ref=e1100]: anuraguniversity
+                              - generic [ref=e1101]: Instagram
+                        - button "About this result" [ref=e1105] [cursor=pointer]:
+                          - img [ref=e1108]
+                - button [ref=e1110] [cursor=pointer]:
+                  - img [ref=e1113]
+            - generic [ref=e1122]:
+              - generic [ref=e1125]:
+                - link "Anurag University LinkedIn · Anurag University 9.5K+ followers" [ref=e1127] [cursor=pointer]:
+                  - /url: https://in.linkedin.com/company/anuraguniversity
+                  - heading "Anurag University" [level=3] [ref=e1128]
+                  - generic [ref=e1133]:
+                    - generic [ref=e1135]: LinkedIn · Anurag University
+                    - generic [ref=e1137]: 9.5K+ followers
+                - button "About this result" [ref=e1138] [cursor=pointer]:
+                  - img [ref=e1141]
+              - generic [ref=e1144]:
+                - generic [ref=e1145]:
+                  - text: After 20 years of excellence, today Anurag University
+                  - emphasis [ref=e1146]: offers 14 under-graduate, 13 post-graduate and 9 doctoral programs
+                  - text: in Engineering, Pharmacy and ...
+                - link "Read more" [ref=e1147] [cursor=pointer]:
+                  - /url: https://in.linkedin.com/company/anuraguniversity#:~:text=After%2020%20years%20of%20excellence%2C,in%20Engineering%2C%20Pharmacy%20and%20Management.
+            - generic [ref=e1155]:
+              - generic [ref=e1158]:
+                - link "Anurag University /Anurag Group Of Institutions Facebook · Anurag University /Anurag Group Of Institutions 6K+ followers" [ref=e1160] [cursor=pointer]:
+                  - /url: https://www.facebook.com/Anuraguniversity/
+                  - heading "Anurag University /Anurag Group Of Institutions" [level=3] [ref=e1161]
+                  - generic [ref=e1166]:
+                    - generic [ref=e1168]: Facebook · Anurag University /Anurag Group Of Institutions
+                    - generic [ref=e1170]: 6K+ followers
+                - button "About this result" [ref=e1171] [cursor=pointer]:
+                  - img [ref=e1174]
+              - generic [ref=e1177]:
+                - generic [ref=e1178]:
+                  - text: Building a competent & capable generation to make a great tomorrow through
+                  - emphasis [ref=e1179]: Engineering, Pharmacy, Management, Nursing, Medical & Agricultural Sciences
+                  - text: .
+                - link "Read more" [ref=e1180] [cursor=pointer]:
+                  - /url: https://www.facebook.com/Anuraguniversity/#:~:text=Building%20a%20competent%20%26%20capable,Nursing%2C%20Medical%20%26%20Agricultural%20Sciences.
+            - generic [ref=e1188]:
+              - generic [ref=e1191]:
+                - link "Anurag Engineering College Anurag Engineering College https://anurag.ac.in" [ref=e1193] [cursor=pointer]:
+                  - /url: https://anurag.ac.in/
+                  - heading "Anurag Engineering College" [level=3] [ref=e1194]
+                  - generic [ref=e1199]:
+                    - generic [ref=e1201]: Anurag Engineering College
+                    - generic [ref=e1203]: https://anurag.ac.in
+                - button "About this result" [ref=e1204] [cursor=pointer]:
+                  - img [ref=e1207]
+              - generic [ref=e1210]:
+                - generic [ref=e1211]:
+                  - emphasis [ref=e1212]: Anurag Engineering College
+                  - text: was established in 2001. It stands as one of the most reputed and preferred colleges for engineering education in rural areas.
+                - link "Read more" [ref=e1213] [cursor=pointer]:
+                  - /url: https://anurag.ac.in/#:~:text=Anurag%20Engineering%20College%20was%20established,engineering%20education%20in%20rural%20areas.
+            - generic [ref=e1221]:
+              - generic [ref=e1224]:
+                - 'link "Anurag University, Hyderabad: Accreditation & Awards ... India Today https://bestcolleges.indiatoday.in › Engineering" [ref=e1226] [cursor=pointer]':
+                  - /url: https://bestcolleges.indiatoday.in/college-details/2/anurag-university-hyderabad
+                  - 'heading "Anurag University, Hyderabad: Accreditation & Awards ..." [level=3] [ref=e1227]'
+                  - generic [ref=e1232]:
+                    - generic [ref=e1234]: India Today
+                    - generic [ref=e1236]: https://bestcolleges.indiatoday.in › Engineering
+                - button "About this result" [ref=e1237] [cursor=pointer]:
+                  - img [ref=e1240]
+              - generic [ref=e1243]:
+                - generic [ref=e1244]:
+                  - text: The institute offers
+                  - emphasis [ref=e1245]: undergraduate and postgraduate programmes in various engineering disciplines
+                  - text: (including civil, mechanical, chemical and electrical), as ...
+                - link "Read more" [ref=e1246] [cursor=pointer]:
+                  - /url: https://bestcolleges.indiatoday.in/college-details/2/anurag-university-hyderabad#:~:text=Read%20More
+            - generic [ref=e1254]:
+              - heading "People also search for" [level=2] [ref=e1256]
+              - generic [ref=e1258]:
+                - generic [ref=e1259]:
+                  - link "Anurag University Hyderabad branches list" [ref=e1263] [cursor=pointer]:
+                    - /url: /search?sca_esv=f3003becd8d45770&q=Anurag+University+Hyderabad+branches+list&sa=X&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQ1QJ6BAhfEAE
+                    - generic [ref=e1264]:
+                      - generic [ref=e1269]: Anurag University Hyderabad branches list
+                      - img [ref=e1273]
+                  - link "Anurag University Hyderabad photos" [ref=e1278] [cursor=pointer]:
+                    - /url: /search?sca_esv=f3003becd8d45770&q=Anurag+University+Hyderabad+photos&sa=X&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQ1QJ6BAh4EAE
+                    - generic [ref=e1279]:
+                      - generic [ref=e1284]: Anurag University Hyderabad photos
+                      - img [ref=e1288]
+                  - link "Uppal to Anurag university Distance" [ref=e1293] [cursor=pointer]:
+                    - /url: /search?sca_esv=f3003becd8d45770&q=Uppal+to+Anurag+university+Distance&sa=X&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQ1QJ6BAh3EAE
+                    - generic [ref=e1294]:
+                      - generic [ref=e1299]: Uppal to Anurag university Distance
+                      - img [ref=e1303]
+                  - link "Anurag University courses and fees" [ref=e1308] [cursor=pointer]:
+                    - /url: /search?sca_esv=f3003becd8d45770&q=Anurag+University+courses+and+fees&sa=X&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQ1QJ6BAhzEAE
+                    - generic [ref=e1309]:
+                      - generic [ref=e1314]: Anurag University courses and fees
+                      - img [ref=e1318]
+                - generic [ref=e1320]:
+                  - link "Anurag University Hyderabad MCA Fees" [ref=e1324] [cursor=pointer]:
+                    - /url: /search?sca_esv=f3003becd8d45770&q=Anurag+University+Hyderabad+MCA+Fees&sa=X&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQ1QJ6BAhvEAE
+                    - generic [ref=e1325]:
+                      - generic [ref=e1330]: Anurag University Hyderabad MCA Fees
+                      - img [ref=e1334]
+                  - link "Anurag University website" [ref=e1339] [cursor=pointer]:
+                    - /url: /search?sca_esv=f3003becd8d45770&q=Anurag+University+website&sa=X&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQ1QJ6BAhoEAE
+                    - generic [ref=e1340]:
+                      - generic [ref=e1345]: Anurag University website
+                      - img [ref=e1349]
+                  - link "Anurag University fee structure" [ref=e1354] [cursor=pointer]:
+                    - /url: /search?sca_esv=f3003becd8d45770&q=Anurag+University+fee+structure&sa=X&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQ1QJ6BAhhEAE
+                    - generic [ref=e1355]:
+                      - generic [ref=e1360]: Anurag University fee structure
+                      - img [ref=e1364]
+                  - link "Anurag University admission contact Number" [ref=e1369] [cursor=pointer]:
+                    - /url: /search?sca_esv=f3003becd8d45770&q=Anurag+University+admission+contact+Number&sa=X&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQ1QJ6BAhgEAE
+                    - generic [ref=e1370]:
+                      - generic [ref=e1375]: Anurag University admission contact Number
+                      - img [ref=e1379]
+            - region "Ads" [ref=e1383]:
+              - generic [ref=e1384]:
+                - heading "Sponsored result" [level=2] [ref=e1391]
+                - generic [ref=e1392]:
+                  - generic [ref=e1404]:
+                    - generic [ref=e1405]:
+                      - link "B.Tech Admissions Open 2026 - 97% Students Get Placed Here admissions.anurag.edu.in https://admissions.anurag.edu.in" [ref=e1406] [cursor=pointer]:
+                        - /url: https://admissions.anurag.edu.in/
+                        - heading "B.Tech Admissions Open 2026 - 97% Students Get Placed Here" [level=3] [ref=e1407]
+                        - generic [ref=e1413]:
+                          - generic [ref=e1415]: admissions.anurag.edu.in
+                          - generic [ref=e1416]: https://admissions.anurag.edu.in
+                      - button "Why this ad?" [ref=e1419] [cursor=pointer]:
+                        - img [ref=e1421]
+                    - generic [ref=e1426]:
+                      - text: Microsoft. TCS. Infosys. HCL hire from
+                      - emphasis [ref=e1427]: Anurag
+                      - text: . 4380 hrs placement training. Apply Now. Top 3 engineering
+                      - emphasis [ref=e1428]: college
+                      - text: Telangana &
+                      - emphasis [ref=e1429]: Hyderabad
+                      - text: .
+                    - link "Hyderabad · Ghatkesar Road" [ref=e1431] [cursor=pointer]:
+                      - /url: https://www.google.com/aclk?sa=L&ai=DChsSEwiAvayY6N2UAxUbm2YCHcz7B6oYACICCAIQBBoCc20&co=1&ase=2&gclid=EAIaIQobChMIgL2smOjdlAMVG5tmAh3M-weqEAMYASAEEgIALfD_BwE&cid=CAASuwHkaEx9EOjo_u2j-WV7O87v2W6onDn7FmmCC750gexJwJX-wVKjCOOTZh9epdni8eLqUFoJEwcgy4G9Cw8n5TSms6qciEQgoOlq3POYHcGX3Cv3EJvvEB-E3EoY8C2Eg2hktr9toNJt6AJ9EUBRD4xxrRwobc7V4350KGk54Orjin6iriFz-167RhSejwle90AG54fnSmuol6MfJY9hZDmKztvT9PrYHLAyfnbujNiLDGPOXYJgxyEuRREn&cce=2&category=acrcp_v1_32&sig=AOD64_1mx-2w0kfo7Z9JgphSelk4sJGP4g&ctype=107&nis=4&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQmxB6BQifARAO&adurl=
+                      - button "Hyderabad · Ghatkesar Road" [ref=e1432]:
+                        - generic [ref=e1433]:
+                          - img [ref=e1436]
+                          - generic [ref=e1438]: Hyderabad · Ghatkesar Road
+                    - generic [ref=e1443]: 10K+ visits in past month
+                  - button "Hide sponsored result" [ref=e1445] [cursor=pointer]:
+                    - separator [ref=e1446]
+                    - generic [ref=e1447]:
+                      - generic [ref=e1448]: Hide sponsored result
+                      - img [ref=e1450]
+        - navigation [ref=e1454]:
+          - heading "Page navigation" [level=1] [ref=e1455]
+          - text: "1"
+          - link "Page 2" [ref=e1458] [cursor=pointer]:
+            - /url: /search?q=anurag+university+hyderabad&sca_esv=f3003becd8d45770&ei=pioZase0GNqxwcsPru2MAQ&start=10&sa=N&sstk=AU9db-BvBw1SzleZgzvJoZTHFnp67qC5rws1vHKI2aRMJNjDgRSYb17JDN8LFEiP5y9bgSPZgEmDpMYmZ0d9SW-v6TJE704s9JUmnA&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQ8tMDegQIVxAE
+            - text: "2"
+          - link "Page 3" [ref=e1460] [cursor=pointer]:
+            - /url: /search?q=anurag+university+hyderabad&sca_esv=f3003becd8d45770&ei=pioZase0GNqxwcsPru2MAQ&start=20&sa=N&sstk=AU9db-BvBw1SzleZgzvJoZTHFnp67qC5rws1vHKI2aRMJNjDgRSYb17JDN8LFEiP5y9bgSPZgEmDpMYmZ0d9SW-v6TJE704s9JUmnA&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQ8tMDegQIVxAG
+            - text: "3"
+          - link "Page 4" [ref=e1462] [cursor=pointer]:
+            - /url: /search?q=anurag+university+hyderabad&sca_esv=f3003becd8d45770&ei=pioZase0GNqxwcsPru2MAQ&start=30&sa=N&sstk=AU9db-BvBw1SzleZgzvJoZTHFnp67qC5rws1vHKI2aRMJNjDgRSYb17JDN8LFEiP5y9bgSPZgEmDpMYmZ0d9SW-v6TJE704s9JUmnA&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQ8tMDegQIVxAI
+            - text: "4"
+          - link "Page 5" [ref=e1464] [cursor=pointer]:
+            - /url: /search?q=anurag+university+hyderabad&sca_esv=f3003becd8d45770&ei=pioZase0GNqxwcsPru2MAQ&start=40&sa=N&sstk=AU9db-BvBw1SzleZgzvJoZTHFnp67qC5rws1vHKI2aRMJNjDgRSYb17JDN8LFEiP5y9bgSPZgEmDpMYmZ0d9SW-v6TJE704s9JUmnA&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQ8tMDegQIVxAK
+            - text: "5"
+          - link "Page 6" [ref=e1466] [cursor=pointer]:
+            - /url: /search?q=anurag+university+hyderabad&sca_esv=f3003becd8d45770&ei=pioZase0GNqxwcsPru2MAQ&start=50&sa=N&sstk=AU9db-BvBw1SzleZgzvJoZTHFnp67qC5rws1vHKI2aRMJNjDgRSYb17JDN8LFEiP5y9bgSPZgEmDpMYmZ0d9SW-v6TJE704s9JUmnA&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQ8tMDegQIVxAM
+            - text: "6"
+          - link "Page 7" [ref=e1468] [cursor=pointer]:
+            - /url: /search?q=anurag+university+hyderabad&sca_esv=f3003becd8d45770&ei=pioZase0GNqxwcsPru2MAQ&start=60&sa=N&sstk=AU9db-BvBw1SzleZgzvJoZTHFnp67qC5rws1vHKI2aRMJNjDgRSYb17JDN8LFEiP5y9bgSPZgEmDpMYmZ0d9SW-v6TJE704s9JUmnA&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQ8tMDegQIVxAO
+            - text: "7"
+          - link "Page 8" [ref=e1470] [cursor=pointer]:
+            - /url: /search?q=anurag+university+hyderabad&sca_esv=f3003becd8d45770&ei=pioZase0GNqxwcsPru2MAQ&start=70&sa=N&sstk=AU9db-BvBw1SzleZgzvJoZTHFnp67qC5rws1vHKI2aRMJNjDgRSYb17JDN8LFEiP5y9bgSPZgEmDpMYmZ0d9SW-v6TJE704s9JUmnA&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQ8tMDegQIVxAQ
+            - text: "8"
+          - link "Page 9" [ref=e1472] [cursor=pointer]:
+            - /url: /search?q=anurag+university+hyderabad&sca_esv=f3003becd8d45770&ei=pioZase0GNqxwcsPru2MAQ&start=80&sa=N&sstk=AU9db-BvBw1SzleZgzvJoZTHFnp67qC5rws1vHKI2aRMJNjDgRSYb17JDN8LFEiP5y9bgSPZgEmDpMYmZ0d9SW-v6TJE704s9JUmnA&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQ8tMDegQIVxAS
+            - text: "9"
+          - link "Page 10" [ref=e1474] [cursor=pointer]:
+            - /url: /search?q=anurag+university+hyderabad&sca_esv=f3003becd8d45770&ei=pioZase0GNqxwcsPru2MAQ&start=90&sa=N&sstk=AU9db-BvBw1SzleZgzvJoZTHFnp67qC5rws1vHKI2aRMJNjDgRSYb17JDN8LFEiP5y9bgSPZgEmDpMYmZ0d9SW-v6TJE704s9JUmnA&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQ8tMDegQIVxAU
+            - text: "10"
+          - heading "Next" [level=2] [ref=e1476]:
+            - link "Next" [ref=e1477] [cursor=pointer]:
+              - /url: /search?q=anurag+university+hyderabad&sca_esv=f3003becd8d45770&ei=pioZase0GNqxwcsPru2MAQ&start=10&sa=N&sstk=AU9db-BvBw1SzleZgzvJoZTHFnp67qC5rws1vHKI2aRMJNjDgRSYb17JDN8LFEiP5y9bgSPZgEmDpMYmZ0d9SW-v6TJE704s9JUmnA&ved=2ahUKEwjHn6aY6N2UAxXaWHADHa42IwAQ8NMDegQIVxAW
+              - generic [ref=e1479]: Next
+        - navigation
+      - complementary "Complementary results" [ref=e1480]:
+        - heading "Complementary results" [level=2] [ref=e1481]
+    - contentinfo [ref=e1482]:
+      - heading "Footer links" [level=1] [ref=e1483]
+      - generic [ref=e1487]:
+        - generic [ref=e1489]:
+          - text: India
+          - generic [ref=e1491]:
+            - button "500098, Hyderabad, Telangana - From your IP address" [ref=e1493] [cursor=pointer]:
+              - generic [ref=e1494]: 500098, Hyderabad, Telangana
+              - generic [ref=e1496]:
+                - text: "-"
+                - generic [ref=e1497]: From your IP address
+            - text: "-"
+            - button "Update location" [ref=e1499] [cursor=pointer]: Update location
+        - generic [ref=e1502]:
+          - link "Help" [ref=e1503] [cursor=pointer]:
+            - /url: https://support.google.com/websearch/?p=ws_results_help&hl=en-IN&fg=1
+          - link "Send feedback" [ref=e1504] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacy" [ref=e1505] [cursor=pointer]:
+            - /url: https://policies.google.com/privacy?hl=en-IN&fg=1
+          - link "Terms" [ref=e1506] [cursor=pointer]:
+            - /url: https://policies.google.com/terms?hl=en-IN&fg=1

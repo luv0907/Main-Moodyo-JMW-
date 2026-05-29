@@ -42,7 +42,7 @@ class BrowserController:
         os.makedirs(user_data_path, exist_ok=True)
         self.server_params = StdioServerParameters(
             command="npx",
-            args=["-y", "@playwright/mcp@latest", "--user-data-dir", user_data_path],
+            args=["-y", "@playwright/mcp@latest", "--user-data-dir", user_data_path, "--sandbox"],
             env=None
         )
         self.session = None
